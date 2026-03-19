@@ -14,11 +14,8 @@
     --dark: #0a0804;
     --dark-mid: #13100a;
     --dark-warm: #1a1410;
-    --red: #8b1a1a;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background-color: var(--dark);
     color: var(--cream);
@@ -26,23 +23,17 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
   body::before {
     content: '';
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.12) 2px,
-      rgba(0,0,0,0.12) 4px
-    );
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
     pointer-events: none;
     z-index: 1000;
   }
 
+  /* HERO */
   .hero {
     position: relative;
     min-height: 100vh;
@@ -52,107 +43,79 @@
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem;
-    background: radial-gradient(ellipse at center, #1f1508 0%, #0a0804 70%);
-    border-bottom: 1px solid var(--gold-dim);
+    overflow: hidden;
   }
-
-  .signal-line {
-    width: 1px;
-    height: 70px;
-    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-    margin: 0 auto 2rem;
-    animation: pulse 3s ease-in-out infinite;
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('SL_Tonight_We_Are_Where_The_Nightmares_Go.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) saturate(0.6);
+    z-index: 0;
   }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,8,4,0.2) 0%, rgba(10,8,4,0.05) 40%, rgba(10,8,4,0.75) 80%, rgba(10,8,4,1) 100%);
+    z-index: 1;
   }
-
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-logo {
+    width: min(260px, 55vw);
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 40px rgba(201,168,76,0.5));
+    animation: glow 4s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 25px rgba(201,168,76,0.3)); }
+    50% { filter: drop-shadow(0 0 55px rgba(201,168,76,0.65)); }
+  }
   .channel-id {
     font-family: 'Special Elite', monospace;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     letter-spacing: 0.4em;
     color: var(--gold-dim);
     text-transform: uppercase;
     margin-bottom: 1.5rem;
   }
-
-  .hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(4.5rem, 14vw, 10rem);
-    font-weight: 900;
-    line-height: 0.85;
-    color: var(--gold);
-    text-shadow: 0 0 80px rgba(201,168,76,0.25), 3px 3px 0px rgba(0,0,0,0.8);
-    letter-spacing: -0.02em;
-    margin-bottom: 0.4rem;
-  }
-
-  .hero-subtitle {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.8rem, 5vw, 3.5rem);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--cream);
-    letter-spacing: 0.05em;
-    margin-bottom: 2rem;
-  }
-
   .tagline {
     font-family: 'Special Elite', monospace;
-    font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+    font-size: clamp(0.7rem, 1.8vw, 1rem);
     letter-spacing: 0.25em;
     color: var(--gold-dim);
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
-
   .host-credit {
     font-style: italic;
     font-size: 1.05rem;
-    color: rgba(240,230,200,0.45);
+    color: rgba(240,230,200,0.4);
     margin-bottom: 3rem;
   }
-
-  .hero-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
   .btn {
     font-family: 'Special Elite', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
     padding: 0.85rem 2rem;
     border: 1px solid var(--gold-dim);
     color: var(--gold);
-    background: transparent;
+    background: rgba(10,8,4,0.6);
     transition: all 0.25s ease;
-    display: inline-block;
+    backdrop-filter: blur(4px);
   }
+  .btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn.primary { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn.primary:hover { background: var(--cream); border-color: var(--cream); }
 
-  .btn:hover {
-    background: var(--gold);
-    color: var(--dark);
-    border-color: var(--gold);
-  }
-
-  .btn.primary {
-    background: var(--gold);
-    color: var(--dark);
-    border-color: var(--gold);
-  }
-
-  .btn.primary:hover {
-    background: var(--cream);
-    border-color: var(--cream);
-  }
-
+  /* BAND */
   .band {
     background: var(--dark-mid);
     border-top: 1px solid rgba(201,168,76,0.12);
@@ -160,15 +123,15 @@
     padding: 1.2rem 2rem;
     text-align: center;
   }
-
   .band-text {
     font-family: 'Special Elite', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.5em;
     color: var(--gold-dim);
     text-transform: uppercase;
   }
 
+  /* ABOUT */
   .about {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -178,27 +141,33 @@
     max-width: 1100px;
     margin: 0 auto;
   }
-
   @media (max-width: 700px) {
     .about { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .host-section { grid-template-columns: 1fr; text-align: center; }
+    .host-img { margin: 0 auto; }
   }
-
+  .about-img-wrap { position: relative; }
   .about-img {
     width: 100%;
     display: block;
     border: 1px solid var(--gold-dim);
-    filter: sepia(0.15) contrast(1.05);
+  }
+  .about-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid rgba(201,168,76,0.2);
+    pointer-events: none;
   }
 
   .section-label {
     font-family: 'Special Elite', monospace;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     letter-spacing: 0.5em;
     color: var(--gold-dim);
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
-
   .section-title {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.8rem, 4vw, 2.6rem);
@@ -207,13 +176,13 @@
     margin-bottom: 1.25rem;
     line-height: 1.1;
   }
-
   .section-body {
     font-size: 1.1rem;
     line-height: 1.85;
     color: rgba(240,230,200,0.75);
   }
 
+  /* DIVIDER */
   .divider {
     display: flex;
     align-items: center;
@@ -222,41 +191,71 @@
     max-width: 900px;
     margin: 0 auto;
   }
-
   .divider-line {
     flex: 1;
     height: 1px;
     background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
   }
+  .divider-sym { color: var(--gold-dim); }
 
-  .divider-sym {
+  /* FEATURE STRIP */
+  .feature-strip {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  .feature-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: brightness(0.35) saturate(0.7);
+  }
+  .feature-strip-text {
+    position: absolute; inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .feature-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.1rem, 3vw, 1.9rem);
+    font-style: italic;
+    color: var(--cream);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+    max-width: 700px;
+    line-height: 1.4;
+  }
+  .feature-attr {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
     color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-top: 1rem;
   }
 
-  .shows-header {
-    padding: 5rem 2rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
+  /* SHOWS */
+  .shows-header { padding: 5rem 2rem 2rem; max-width: 1100px; margin: 0 auto; }
   .shows-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 1.25rem;
-    padding: 0 2rem 5rem;
+    padding: 0 2rem 3rem;
     max-width: 1100px;
     margin: 0 auto;
   }
-
   .show-card {
     background: var(--dark-warm);
     border: 1px solid rgba(201,168,76,0.12);
     padding: 1.75rem;
     position: relative;
     transition: all 0.3s ease;
-    overflow: hidden;
   }
-
   .show-card::before {
     content: '';
     position: absolute;
@@ -267,45 +266,49 @@
     transform-origin: bottom;
     transition: transform 0.3s ease;
   }
-
-  .show-card:hover {
-    border-color: rgba(201,168,76,0.35);
-    background: #1d1912;
-  }
-
+  .show-card:hover { border-color: rgba(201,168,76,0.35); background: #1d1912; }
   .show-card:hover::before { transform: scaleY(1); }
-
   .show-number {
     font-family: 'Special Elite', monospace;
-    font-size: 0.58rem;
+    font-size: 0.55rem;
     letter-spacing: 0.35em;
     color: var(--gold-dim);
     text-transform: uppercase;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
   }
-
   .show-name {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--cream);
     margin-bottom: 0.6rem;
     line-height: 1.2;
   }
+  .show-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(240,230,200,0.48); }
 
-  .show-desc {
-    font-size: 0.92rem;
-    line-height: 1.65;
-    color: rgba(240,230,200,0.5);
-  }
-
-  .find-us {
-    text-align: center;
-    padding: 4rem 2rem 2rem;
-    max-width: 700px;
+  /* HOST */
+  .host-section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 5rem 2rem;
+    max-width: 1100px;
     margin: 0 auto;
   }
+  .host-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    border: 2px solid var(--gold-dim);
+    filter: sepia(0.15) contrast(1.05);
+    box-shadow: 0 0 40px rgba(201,168,76,0.12);
+  }
 
+  /* LINKS */
+  .find-us { text-align: center; padding: 4rem 2rem 2rem; max-width: 700px; margin: 0 auto; }
   .links-row {
     display: flex;
     flex-wrap: wrap;
@@ -313,7 +316,6 @@
     justify-content: center;
     padding: 2rem 2rem 5rem;
   }
-
   .link-block {
     text-decoration: none;
     border: 1px solid rgba(201,168,76,0.18);
@@ -323,80 +325,57 @@
     background: var(--dark-warm);
     min-width: 150px;
   }
-
-  .link-block:hover {
-    border-color: var(--gold);
-    background: #1d1912;
-  }
-
+  .link-block:hover { border-color: var(--gold); background: #1d1912; }
   .link-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
   .link-label {
     font-family: 'Special Elite', monospace;
-    font-size: 0.58rem;
+    font-size: 0.55rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold-dim);
     display: block;
     margin-bottom: 0.2rem;
   }
-  .link-name {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1rem;
-    color: var(--cream);
-  }
+  .link-name { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; color: var(--cream); }
 
+  /* FOOTER */
   footer {
     border-top: 1px solid rgba(201,168,76,0.12);
     padding: 3rem 2rem;
     text-align: center;
     background: var(--dark-mid);
   }
-
-  .footer-logo {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-
+  .footer-logo-img { width: 100px; margin: 0 auto 1rem; display: block; opacity: 0.7; }
   .footer-tag {
     font-family: 'Special Elite', monospace;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     letter-spacing: 0.4em;
     color: var(--gold-dim);
     text-transform: uppercase;
     margin-bottom: 1.5rem;
   }
+  .footer-fine { font-size: 0.78rem; color: rgba(240,230,200,0.18); line-height: 1.7; max-width: 600px; margin: 0 auto; }
 
-  .footer-fine {
-    font-size: 0.8rem;
-    color: rgba(240,230,200,0.2);
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="signal-line"></div>
-  <div class="channel-id">Broadcasting from Second Life &nbsp;·&nbsp; Felix Lubezki &nbsp;·&nbsp; Est. 2024</div>
-  <div class="hero-title">SL</div>
-  <div class="hero-subtitle">Tonight</div>
-  <div class="tagline">We Are Where The Nightmares Go</div>
-  <div class="host-credit">Presented by Felix Lubezki</div>
-  <div class="hero-links">
-    <a href="https://youtube.com/@jamesriley007" class="btn primary" target="_blank">Watch on YouTube</a>
-    <a href="https://marketplace.secondlife.com/stores/255106" class="btn" target="_blank">SL Marketplace</a>
-    <a href="https://discord.gg/DSBcwS7zXE" class="btn" target="_blank">Discord</a>
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="sl_tonight_bycard.jpg" alt="SL Tonight" class="hero-logo">
+    <div class="channel-id">Broadcasting from Second Life &nbsp;·&nbsp; Felix Lubezki &nbsp;·&nbsp; Est. 2024</div>
+    <div class="tagline">We Are Where The Nightmares Go</div>
+    <div class="host-credit">Presented by Felix Lubezki</div>
+    <div class="hero-links">
+      <a href="https://youtube.com/@jamesriley007" class="btn primary" target="_blank">Watch on YouTube</a>
+      <a href="https://marketplace.secondlife.com/stores/255106" class="btn" target="_blank">SL Marketplace</a>
+      <a href="https://discord.gg/DSBcwS7zXE" class="btn" target="_blank">Discord</a>
+    </div>
   </div>
 </div>
 
@@ -405,26 +384,25 @@
 </div>
 
 <div class="about reveal">
-  <div>
-    <img class="about-img" src="https://i.imgur.com/placeholder.jpg" alt="SL Tonight" onerror="this.parentElement.style.display='none'">
+  <div class="about-img-wrap">
+    <img src="4b70a26e-f578-4930-b28e-b8762b960eee.jpg" alt="SL Tonight with Felix Lubezki" class="about-img">
   </div>
   <div>
     <div class="section-label">About the Show</div>
     <h2 class="section-title">Stories from the Shadows</h2>
-    <p class="section-body">
-      SL Tonight is a Second Life storytelling channel inspired by The Twilight Zone, 
-      Tales from the Crypt, and the grown-up version of Reading Rainbow nobody made until now.
-    </p>
+    <p class="section-body">SL Tonight is a Second Life storytelling channel inspired by The Twilight Zone, Tales from the Crypt, and the grown-up version of Reading Rainbow nobody made until now.</p>
     <br>
-    <p class="section-body">
-      Your host Felix Lubezki presents horror readings, original music from The Dial Tones, 
-      retro comic readings, nature documentaries about digital cats, paranormal file reviews, 
-      and whatever else the night brings. Filmed in Second Life. Presented everywhere else.
-    </p>
+    <p class="section-body">Your host Felix Lubezki presents horror readings, original music from The Dial Tones, retro comic readings, nature documentaries about digital cats, paranormal file reviews, fan fiction readings, and whatever else the night brings.</p>
     <br>
-    <p class="section-body" style="font-style: italic; color: rgba(240,230,200,0.4);">
-      "We are where the nightmares go."
-    </p>
+    <p class="section-body" style="font-style: italic; color: rgba(240,230,200,0.35);">"We are where the nightmares go."</p>
+  </div>
+</div>
+
+<div class="feature-strip reveal">
+  <img src="sltonightreadingtheme.png" alt="">
+  <div class="feature-strip-text">
+    <div class="feature-quote">"We dare you to read these eerie tales of supernatural horror."</div>
+    <div class="feature-attr">Tales That Terrify &nbsp;·&nbsp; On Record &nbsp;·&nbsp; Borrowed Worlds &nbsp;·&nbsp; Witches Tales</div>
   </div>
 </div>
 
@@ -478,7 +456,22 @@
   <div class="show-card reveal">
     <div class="show-number">Shop</div>
     <div class="show-name">Interactive Comics</div>
-    <div class="show-desc">Click-to-flip public domain comics on the Second Life Marketplace. Wall decor, reading props, and SL Tonight promotional items. No serial number required.</div>
+    <div class="show-desc">Click-to-flip public domain comics on the Second Life Marketplace. Wall decor, reading props, SL Tonight promotional items. No serial number required.</div>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="host-section reveal">
+  <img src="8466o3IQ_400x400.jpg" alt="Felix Lubezki" class="host-img">
+  <div>
+    <div class="section-label">Your Host</div>
+    <h2 class="section-title">Felix Lubezki</h2>
+    <p class="section-body">Just a guy with a chair, a library full of stories, and a Second Life avatar who somehow ended up running a late night variety show. Horror readings, original music, retro comics, digital cat documentaries. If it belongs somewhere after midnight, it belongs here.</p>
   </div>
 </div>
 
@@ -513,7 +506,7 @@
 </div>
 
 <footer>
-  <div class="footer-logo">SL Tonight</div>
+  <img src="sl_tonight_bycard.jpg" alt="SL Tonight" class="footer-logo-img">
   <div class="footer-tag">We are where the nightmares go</div>
   <div class="footer-fine">
     SL Tonight is not affiliated with Atari, Nintendo, or anyone else.<br>
@@ -535,6 +528,5 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
