@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Tonight — We Are Where The Nightmares Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Special+Elite&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2f;
+    --cream: #f0e6c8;
+    --dark: #0a0804;
+    --dark-mid: #13100a;
+    --dark-warm: #1a1410;
+    --red: #8b1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--cream);
+    font-family: 'Crimson Text', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.12) 2px,
+      rgba(0,0,0,0.12) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: radial-gradient(ellipse at center, #1f1508 0%, #0a0804 70%);
+    border-bottom: 1px solid var(--gold-dim);
+  }
+
+  .signal-line {
+    width: 1px;
+    height: 70px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 0 auto 2rem;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .channel-id {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(4.5rem, 14vw, 10rem);
+    font-weight: 900;
+    line-height: 0.85;
+    color: var(--gold);
+    text-shadow: 0 0 80px rgba(201,168,76,0.25), 3px 3px 0px rgba(0,0,0,0.8);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  .tagline {
+    font-family: 'Special Elite', monospace;
+    font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .host-credit {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(240,230,200,0.45);
+    margin-bottom: 3rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    background: transparent;
+    transition: all 0.25s ease;
+    display: inline-block;
+  }
+
+  .btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+    border-color: var(--gold);
+  }
+
+  .btn.primary {
+    background: var(--gold);
+    color: var(--dark);
+    border-color: var(--gold);
+  }
+
+  .btn.primary:hover {
+    background: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .band {
+    background: var(--dark-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    padding: 1.2rem 2rem;
+    text-align: center;
+  }
+
+  .band-text {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 700px) {
+    .about { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+  }
+
+  .about-img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--gold-dim);
+    filter: sepia(0.15) contrast(1.05);
+  }
+
+  .section-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+  }
+
+  .section-body {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(240,230,200,0.75);
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+
+  .divider-sym {
+    color: var(--gold-dim);
+  }
+
+  .shows-header {
+    padding: 5rem 2rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .shows-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.25rem;
+    padding: 0 2rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .show-card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1.75rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .show-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold-dim);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease;
+  }
+
+  .show-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    background: #1d1912;
+  }
+
+  .show-card:hover::before { transform: scaleY(1); }
+
+  .show-number {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .show-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .show-desc {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(240,230,200,0.5);
+  }
+
+  .find-us {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem 2rem 5rem;
+  }
+
+  .link-block {
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    transition: all 0.25s ease;
+    background: var(--dark-warm);
+    min-width: 150px;
+  }
+
+  .link-block:hover {
+    border-color: var(--gold);
+    background: #1d1912;
+  }
+
+  .link-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+  .link-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .link-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    color: var(--cream);
+  }
+
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--dark-mid);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-tag {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-fine {
+    font-size: 0.8rem;
+    color: rgba(240,230,200,0.2);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="signal-line"></div>
+  <div class="channel-id">Broadcasting from Second Life &nbsp;·&nbsp; Felix Lubezki &nbsp;·&nbsp; Est. 2024</div>
+  <div class="hero-title">SL</div>
+  <div class="hero-subtitle">Tonight</div>
+  <div class="tagline">We Are Where The Nightmares Go</div>
+  <div class="host-credit">Presented by Felix Lubezki</div>
+  <div class="hero-links">
+    <a href="https://youtube.com/@jamesriley007" class="btn primary" target="_blank">Watch on YouTube</a>
+    <a href="https://marketplace.secondlife.com/stores/255106" class="btn" target="_blank">SL Marketplace</a>
+    <a href="https://discord.gg/DSBcwS7zXE" class="btn" target="_blank">Discord</a>
+  </div>
+</div>
+
+<div class="band">
+  <div class="band-text">Horror &nbsp;·&nbsp; Music &nbsp;·&nbsp; Comics &nbsp;·&nbsp; Stories &nbsp;·&nbsp; Second Life &nbsp;·&nbsp; The Dial Tones &nbsp;·&nbsp; SL Toons</div>
+</div>
+
+<div class="about reveal">
+  <div>
+    <img class="about-img" src="https://i.imgur.com/placeholder.jpg" alt="SL Tonight" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div>
+    <div class="section-label">About the Show</div>
+    <h2 class="section-title">Stories from the Shadows</h2>
+    <p class="section-body">
+      SL Tonight is a Second Life storytelling channel inspired by The Twilight Zone, 
+      Tales from the Crypt, and the grown-up version of Reading Rainbow nobody made until now.
+    </p>
+    <br>
+    <p class="section-body">
+      Your host Felix Lubezki presents horror readings, original music from The Dial Tones, 
+      retro comic readings, nature documentaries about digital cats, paranormal file reviews, 
+      and whatever else the night brings. Filmed in Second Life. Presented everywhere else.
+    </p>
+    <br>
+    <p class="section-body" style="font-style: italic; color: rgba(240,230,200,0.4);">
+      "We are where the nightmares go."
+    </p>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="shows-header reveal">
+  <div class="section-label">What's On</div>
+  <h2 class="section-title">The Programming</h2>
+</div>
+
+<div class="shows-grid">
+  <div class="show-card reveal">
+    <div class="show-number">Show 01</div>
+    <div class="show-name">Tales That Terrify</div>
+    <div class="show-desc">Readings from Alfred Hitchcock's anthology collections. Horror stories presented with the care they deserve. Series 2 now airing.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 02</div>
+    <div class="show-name">On Record: Believe It Or Don't</div>
+    <div class="show-desc">Documented anomalies from Charles Fort's Book of the Damned. Things that fell from clear skies. The explanations. The geometry of it. It is on record.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 03</div>
+    <div class="show-name">The Dial Tones</div>
+    <div class="show-desc">Original music inspired by retro games, arcade culture, and the things nobody made songs about yet. The house band of SL Tonight.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 04</div>
+    <div class="show-name">SL Toons</div>
+    <div class="show-desc">Public domain cartoon readings, nature documentaries about digital cats, and the Midnight Series — classic animation scored with Dial Tones originals.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 05</div>
+    <div class="show-name">Atari Comics</div>
+    <div class="show-desc">Full readings of the Atari Force comic series. Felix reads them out loud in Second Life. Somehow that's a thing that exists now.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 06</div>
+    <div class="show-name">Borrowed Worlds</div>
+    <div class="show-desc">Fan fiction readings presented with care. Currently: Star Fox: Shards of the Past by InsurrectionAlpha. These are borrowed worlds. They deserved to be heard.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 07</div>
+    <div class="show-name">Witches Tales & Friends</div>
+    <div class="show-desc">Full issue readings of public domain horror comics. Harvey Comics, EC Comics, and more. Ten cents worth of weird yarns of unseen terrors.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Shop</div>
+    <div class="show-name">Interactive Comics</div>
+    <div class="show-desc">Click-to-flip public domain comics on the Second Life Marketplace. Wall decor, reading props, and SL Tonight promotional items. No serial number required.</div>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="find-us reveal">
+  <div class="section-label">Find Us</div>
+  <h2 class="section-title">Tune In</h2>
+  <p class="section-body">No serial number required. Do not mail anything to Philadelphia.</p>
+</div>
+
+<div class="links-row">
+  <a href="https://youtube.com/@jamesriley007" class="link-block reveal" target="_blank">
+    <span class="link-icon">▶</span>
+    <span class="link-label">Primary</span>
+    <span class="link-name">YouTube</span>
+  </a>
+  <a href="https://marketplace.secondlife.com/stores/255106" class="link-block reveal" target="_blank">
+    <span class="link-icon">🛒</span>
+    <span class="link-label">Shop</span>
+    <span class="link-name">SL Marketplace</span>
+  </a>
+  <a href="https://discord.gg/DSBcwS7zXE" class="link-block reveal" target="_blank">
+    <span class="link-icon">💬</span>
+    <span class="link-label">Community</span>
+    <span class="link-name">Discord</span>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-logo">SL Tonight</div>
+  <div class="footer-tag">We are where the nightmares go</div>
+  <div class="footer-fine">
+    SL Tonight is not affiliated with Atari, Nintendo, or anyone else.<br>
+    All fan works presented with full credit to original creators.<br>
+    Public domain content historically preserved and presented with respect.<br>
+    © 2024 SL Tonight / Felix Lubezki
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 50);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
