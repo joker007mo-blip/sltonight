@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karen Knockout — The Dial Tones × Knockout 2: Wrath of the Karen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Special+Elite&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #6a0dad;
+    --pink: #ff2d78;
+    --yellow: #ffe600;
+    --red: #ff2200;
+    --dark: #0a0008;
+    --dark-mid: #110010;
+    --dark-warm: #1a0018;
+    --cream: #f0e6c8;
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: var(--dark);
+    color: var(--cream);
+    font-family: 'Crimson Text', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* NAV */
+  .nav {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,45,120,0.2);
+    background: var(--dark-mid);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav a {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gold-dim);
+    transition: color 0.2s;
+  }
+  .nav a:hover { color: var(--gold); }
+  .nav-sep { color: rgba(201,168,76,0.3); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #1a0025 0%, #0a0008 70%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(106,13,173,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(255,45,120,0.1) 0%, transparent 40%);
+  }
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-poster {
+    width: min(320px, 70vw);
+    margin: 0 auto 2.5rem;
+    display: block;
+    filter: drop-shadow(0 0 40px rgba(255,45,120,0.4));
+    animation: arcade-glow 2s ease-in-out infinite;
+  }
+  @keyframes arcade-glow {
+    0%, 100% { filter: drop-shadow(0 0 25px rgba(255,45,120,0.3)); }
+    50% { filter: drop-shadow(0 0 55px rgba(255,45,120,0.7)) drop-shadow(0 0 80px rgba(106,13,173,0.4)); }
+  }
+
+  .hero-band {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(240,230,200,0.7);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--pink);
+    color: var(--pink);
+    background: transparent;
+    transition: all 0.25s ease;
+    display: inline-block;
+  }
+  .btn:hover { background: var(--pink); color: var(--dark); }
+  .btn.primary { background: var(--pink); color: var(--dark); }
+  .btn.primary:hover { background: var(--yellow); border-color: var(--yellow); }
+  .btn.steam { border-color: #1b9cd8; color: #1b9cd8; }
+  .btn.steam:hover { background: #1b9cd8; color: var(--dark); }
+
+  /* BAND */
+  .band {
+    background: var(--dark-mid);
+    border-top: 1px solid rgba(255,45,120,0.15);
+    border-bottom: 1px solid rgba(255,45,120,0.15);
+    padding: 1rem 2rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .band-text {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: rgba(255,45,120,0.5);
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: scroll-band 20s linear infinite;
+    display: inline-block;
+  }
+  @keyframes scroll-band {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* SECTION */
+  .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    color: rgba(255,45,120,0.6);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+  }
+  .section-body {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(240,230,200,0.75);
+    max-width: 680px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,45,120,0.4), transparent);
+  }
+  .divider-sym { color: var(--pink); opacity: 0.5; }
+
+  /* VIDEOS */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 2rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .video-card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(255,45,120,0.15);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .video-card:hover { border-color: rgba(255,45,120,0.4); }
+
+  .video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .video-info { padding: 1rem 1.25rem; }
+  .video-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    color: rgba(255,45,120,0.6);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .video-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,45,120,0.15);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: var(--dark-mid);
+  }
+  .footer-back {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .footer-back:hover { color: var(--gold); }
+  .footer-fine {
+    font-size: 0.78rem;
+    color: rgba(240,230,200,0.18);
+    line-height: 1.7;
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html">← SL Tonight</a>
+  <span class="nav-sep">·</span>
+  <a href="index.html#friends">Friends of the Show</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <img src="ko2.png" alt="Karen Knockout" class="hero-poster">
+    <div class="hero-band">The Dial Tones × Exceptionull Games</div>
+    <p class="hero-desc">
+      The Dial Tones deliver a chiptune rock hip-hop boxing anthem for 
+      Knockout 2: Wrath of the Karen — FBI agent versus entitled Karens 
+      in epic punch-out chaos. Hosted by Felix Lubezki, live in Second Life.
+    </p>
+    <div class="hero-links">
+      <a href="https://youtu.be/pnH8NcfAP4o" class="btn primary" target="_blank">Watch the Music Video</a>
+      <a href="https://store.steampowered.com/app/2349350/Knockout_2_Wrath_of_the_Karen/" class="btn steam" target="_blank">Wishlist on Steam</a>
+    </div>
+  </div>
+</div>
+
+<div class="band">
+  <span class="band-text">KAREN KNOCKOUT &nbsp;·&nbsp; THE DIAL TONES &nbsp;·&nbsp; SL TONIGHT HOUSE BAND &nbsp;·&nbsp; KNOCKOUT 2: WRATH OF THE KAREN &nbsp;·&nbsp; EXCEPTIONULL GAMES &nbsp;·&nbsp; RELEASING 2026 &nbsp;·&nbsp; STEAM · ANDROID · IOS &nbsp;·&nbsp; KAREN KNOCKOUT &nbsp;·&nbsp; THE DIAL TONES &nbsp;·&nbsp;</span>
+</div>
+
+<div class="section reveal">
+  <div class="section-label">About the Game</div>
+  <h2 class="section-title">Knockout 2: Wrath of the Karen</h2>
+  <p class="section-body">
+    As an FBI agent, research a terrifying disease spreading across the country 
+    in this classic Punch-Out!! inspired game. A much darker, older secret lurks 
+    in the shadows — an ancient evil rises to threaten national security, the world, 
+    and your quarterly performance bonus.
+  </p>
+  <br>
+  <p class="section-body" style="font-style:italic;color:rgba(240,230,200,0.4);">
+    Releasing on Steam, Android, and iOS in 2026.
+  </p>
+  <br>
+  <a href="https://store.steampowered.com/app/2349350/Knockout_2_Wrath_of_the_Karen/" class="btn steam" target="_blank" style="margin-top:0.5rem;">Wishlist on Steam</a>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="section reveal" style="padding-bottom:1rem;">
+  <div class="section-label">Videos</div>
+  <h2 class="section-title">Watch</h2>
+</div>
+
+<div class="video-grid">
+  <div class="video-card reveal">
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/pnH8NcfAP4o" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-info">
+      <div class="video-label">The Dial Tones</div>
+      <div class="video-title">Karen Knockout — Official Music Video</div>
+    </div>
+  </div>
+
+  <div class="video-card reveal">
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/hwV4PlQuEnA" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-info">
+      <div class="video-label">Exceptionull Games</div>
+      <div class="video-title">Knockout 2: Wrath of the Karen — Official Trailer</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-back">← Back to SL Tonight</a>
+  <div class="footer-fine">
+    Karen Knockout created by The Dial Tones for SL Tonight.<br>
+    Knockout 2: Wrath of the Karen developed by Exceptionull Games.<br>
+    © 2024 SL Tonight / Felix Lubezki
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
