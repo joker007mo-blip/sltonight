@@ -686,7 +686,82 @@
   <div class="divider-line"></div>
 </div>
 
-<div class="find-us reveal">
+<!-- FROM THE ARCHIVE -->
+<div style="max-width:1100px;margin:0 auto;padding:4rem 2rem;">
+  <div class="section-label reveal">From the Archive</div>
+  <h2 class="section-title reveal" style="margin-bottom:2rem;">Tonight's Reading</h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="reveal" id="archive-grid">
+
+    <!-- Rarebit Fiend -->
+    <div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.3em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.75rem;">Dream of the Rarebit Fiend · Winsor McCay · Public Domain</div>
+      <div style="border:1px solid rgba(201,168,76,0.15);overflow:hidden;background:var(--dark-warm);">
+        <img id="rarebit-img" src="" alt="Dream of the Rarebit Fiend" style="width:100%;display:block;filter:sepia(0.2);" onerror="document.getElementById('rarebit-fallback').style.display='flex';this.style.display='none';">
+        <div id="rarebit-fallback" style="display:none;align-items:center;justify-content:center;padding:3rem;text-align:center;">
+          <div style="font-style:italic;color:rgba(240,230,200,0.3);font-size:0.9rem;">Strip loading from archive...</div>
+        </div>
+      </div>
+      <div style="font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:0.85rem;color:rgba(240,230,200,0.3);margin-top:0.5rem;text-align:center;" id="rarebit-caption">Dream of the Rarebit Fiend</div>
+    </div>
+
+    <!-- XKCD -->
+    <div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.3em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.75rem;">XKCD · Randall Munroe · Creative Commons</div>
+      <div style="border:1px solid rgba(201,168,76,0.15);overflow:hidden;background:var(--dark-warm);">
+        <img id="xkcd-img" src="" alt="XKCD" style="width:100%;display:block;filter:invert(0.85) sepia(0.2);" onerror="document.getElementById('xkcd-fallback').style.display='flex';this.style.display='none';">
+        <div id="xkcd-fallback" style="display:none;align-items:center;justify-content:center;padding:3rem;text-align:center;">
+          <div style="font-style:italic;color:rgba(240,230,200,0.3);font-size:0.9rem;">Strip loading...</div>
+        </div>
+      </div>
+      <div style="font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:0.85rem;color:rgba(240,230,200,0.3);margin-top:0.5rem;text-align:center;" id="xkcd-caption">XKCD</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Make archive grid responsive
+  function checkArchiveLayout() {
+    const grid = document.getElementById('archive-grid');
+    if (grid) {
+      grid.style.gridTemplateColumns = window.innerWidth < 700 ? '1fr' : '1fr 1fr';
+    }
+  }
+  window.addEventListener('resize', checkArchiveLayout);
+  checkArchiveLayout();
+
+  // Rarebit Fiend — rotates through strips based on day of year
+  const rarebitStrips = [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Dream_of_the_Rarebit_Fiend_1905-08-12.jpg/800px-Dream_of_the_Rarebit_Fiend_1905-08-12.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Dream_of_the_Rarebit_Fiend_1905-09-09.jpg/800px-Dream_of_the_Rarebit_Fiend_1905-09-09.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dream_of_the_Rarebit_Fiend_by_Winsor_McCay_1905-12-16.jpg/800px-Dream_of_the_Rarebit_Fiend_by_Winsor_McCay_1905-12-16.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Dream_of_the_Rarebit_Fiend_1906-02-24.jpg/800px-Dream_of_the_Rarebit_Fiend_1906-02-24.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dream_of_the_Rarebit_Fiend_1906-03-31.jpg/800px-Dream_of_the_Rarebit_Fiend_1906-03-31.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Dream_of_the_Rarebit_Fiend_1906-09-15.jpg/800px-Dream_of_the_Rarebit_Fiend_1906-09-15.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Dream_of_the_Rarebit_Fiend_1907-01-19.jpg/800px-Dream_of_the_Rarebit_Fiend_1907-01-19.jpg',
+  ];
+
+  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  const stripIndex = dayOfYear % rarebitStrips.length;
+  const rarebitImg = document.getElementById('rarebit-img');
+  const rarebitCap = document.getElementById('rarebit-caption');
+  rarebitImg.src = rarebitStrips[stripIndex];
+  rarebitCap.textContent = 'Dream of the Rarebit Fiend · Winsor McCay · c.1905-1911';
+
+  // XKCD — today's strip via API
+  fetch('https://xkcd.vercel.app/?comic=latest')
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('xkcd-img').src = data.img;
+      document.getElementById('xkcd-caption').textContent = data.title + ' · xkcd.com/' + data.num;
+    })
+    .catch(() => {
+      // fallback to a known good strip
+      document.getElementById('xkcd-img').src = 'https://imgs.xkcd.com/comics/standards.png';
+      document.getElementById('xkcd-caption').textContent = 'XKCD · xkcd.com';
+    });
+</script>
   <div class="section-label">Find Us</div>
   <h2 class="section-title">Tune In</h2>
   <p class="section-body">No serial number required. Do not mail anything to Philadelphia.</p>
