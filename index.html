@@ -367,7 +367,26 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <img src="SL_Tonight_We_Are_Where_The_Nightmares_Go_alt.jpeg" alt="SL Tonight" class="hero-logo">
+    <div style="width:min(260px,55vw);margin:0 auto 2rem;position:relative;">
+      <video id="hero-logo-video" autoplay muted playsinline
+        style="width:100%;display:block;filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));animation:glow 4s ease-in-out infinite;"
+        poster="SL_Tonight_We_Are_Where_The_Nightmares_Go_alt.jpeg">
+        <source src="slmoon.mp4" type="video/mp4">
+        <img src="SL_Tonight_We_Are_Where_The_Nightmares_Go_alt.jpeg" alt="SL Tonight" style="width:100%;display:block;">
+      </video>
+    </div>
+    <script>
+      const heroVid = document.getElementById('hero-logo-video');
+      const sources = ['slmoon.mp4', 'slmoons.mp4'];
+      let current = 0;
+      if (heroVid) {
+        heroVid.addEventListener('ended', () => {
+          current = (current + 1) % sources.length;
+          heroVid.src = sources[current];
+          heroVid.play();
+        });
+      }
+    </script>
     <div class="channel-id">Broadcasting from Second Life &nbsp;·&nbsp; Felix Lubezki &nbsp;·&nbsp; Est. 2024</div>
     <div class="tagline">We Are Where The Nightmares Go</div>
     <div class="host-credit">Presented by Felix Lubezki</div>
