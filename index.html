@@ -531,7 +531,10 @@
       <div class="show-number">Second Life Location</div>
       <div class="show-name">Witches Center & Café</div>
       <div class="show-desc" style="margin-bottom:1rem;">Tucked beside an old graveyard where the veil feels thin. Run by volunteer witches. Broomstick parking available.</div>
-      <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+        <button onclick="document.getElementById('cosmic-modal').style.display='flex'" class="btn" style="font-size:0.62rem;cursor:pointer;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);">✦ Cosmic Whispers</button>
+      </div>
     </div>
   </div>
 
@@ -774,9 +777,44 @@
   document.getElementById('rarebit-img').src = 'rarbit' + stripNum + '.jpg';
   document.getElementById('rarebit-caption').textContent = 'Strip ' + stripNum + ' of ' + (total - 1) + ' · Dream of the Rarebit Fiend · Winsor McCay';
 </script>
-  <div class="section-label">Find Us</div>
-  <h2 class="section-title">Tune In</h2>
-  <p class="section-body">No serial number required. Do not mail anything to Philadelphia.</p>
+<!-- COSMIC WHISPERS MODAL -->
+<div id="cosmic-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:#0d0a14;border:1px solid #6b3fa0;max-width:560px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 0 40px rgba(107,63,160,0.3);">
+    <button onclick="document.getElementById('cosmic-modal').style.display='none'" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:#9b6dd4;font-size:1.5rem;cursor:pointer;font-family:'Special Elite',monospace;">✕</button>
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div style="font-size:1.8rem;margin-bottom:0.5rem;">✦ ☽ ✦</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;font-weight:700;color:#c8a0e8;font-style:italic;text-shadow:0 0 20px rgba(200,160,232,0.4);">Cosmic Whispers</div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.62rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-top:0.4rem;">Witches Center & Café · Magical HUD</div>
+    </div>
+
+    <!-- Daily cosmic iframe -->
+    <div style="border:1px solid rgba(107,63,160,0.4);overflow:hidden;margin-bottom:1.5rem;background:#0a0812;">
+      <iframe src="https://wccastrologyapp.netlify.app/" style="width:100%;height:380px;border:none;display:block;" title="Cosmic Whispers Astrology HUD" loading="lazy"></iframe>
+    </div>
+
+    <!-- Description -->
+    <div style="font-family:'Crimson Text',Georgia,serif;font-size:1rem;line-height:1.8;color:rgba(200,160,232,0.7);text-align:center;margin-bottom:1.5rem;font-style:italic;">
+      Real-time planetary positions · Moon phases · Retrograde tracker<br>
+      Tarot · Runes · Spells · Sacred journal
+    </div>
+
+    <!-- CelestiaCore link -->
+    <div style="border-top:1px solid rgba(107,63,160,0.3);padding-top:1.25rem;text-align:center;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-bottom:0.75rem;">Celestial Reference</div>
+      <a href="https://celestiacore.netlify.app/" target="_blank" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;color:#c8a0e8;text-decoration:none;border:1px solid rgba(107,63,160,0.4);padding:0.5rem 1.5rem;display:inline-block;transition:all 0.2s;">✦ Open CelestiaCore ✦</a>
+    </div>
+
+    <div style="text-align:center;margin-top:1.25rem;">
+      <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" target="_blank" style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b3fa0;text-decoration:none;">Teleport to Witches Center & Café ↗</a>
+    </div>
+  </div>
+</div>
+
+  <div class="section-label" style="text-align:center;">Find Us</div>
+  <h2 class="section-title" style="text-align:center;">Tune In</h2>
+  <p class="section-body" style="text-align:center;margin:0 auto;">No serial number required. Do not mail anything to Philadelphia.</p>
 </div>
 
 <div class="links-row">
