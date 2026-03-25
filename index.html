@@ -551,7 +551,10 @@
       <div class="show-number">Second Life Location</div>
       <div class="show-name">Unbound Grounds</div>
       <div class="show-desc" style="margin-bottom:1rem;">Drive-in movies, classic arcade cabinets, a Carnival of Chaos coming soon, and a zombie apocalypse motorcycle track on the horizon. Something for everyone. Bring snacks.</div>
-      <a href="http://maps.secondlife.com/secondlife/Bigger%20Bang%20Park/107/216/25" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="http://maps.secondlife.com/secondlife/Bigger%20Bang%20Park/107/216/25" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+        <button onclick="document.getElementById('unbound-modal').style.display='flex'" class="btn" style="font-size:0.62rem;cursor:pointer;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);">View Schedule</button>
+      </div>
     </div>
   </div>
 
@@ -568,6 +571,51 @@
     </div>
   </div>
 
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="craft.jpeg" alt="The Craft Room" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Real World — Custom Crafts</div>
+      <div class="show-name">The Craft Room</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Custom Cricut, DTF, UVDTF & Sublimation for any and every occasion. Where creativity meets customization.</div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--gold-dim);margin-bottom:0.75rem;">TikTok: @TheCraftRoom00</div>
+      <a href="https://www.tiktok.com/@TheCraftRoom00" class="btn" target="_blank" style="font-size:0.62rem;">Find Us on TikTok</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- UNBOUND GROUNDS SCHEDULE MODAL -->
+<div id="unbound-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:#13100a;border:1px solid var(--gold-dim);max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto;">
+    <button onclick="document.getElementById('unbound-modal').style.display='none'" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:var(--gold-dim);font-size:1.5rem;cursor:pointer;font-family:'Special Elite',monospace;">✕</button>
+    <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.5rem;">Upcoming Features</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:0.5rem;">Unbound Grounds</div>
+    <div style="font-family:'Special Elite',monospace;font-size:0.65rem;color:var(--gold-dim);margin-bottom:2rem;">Overlook Drive-In · Features start 7:00 PM SLT</div>
+
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Thursday · March 26</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Dolan's Cadillac</div>
+    </div>
+
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Friday · March 27</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Renfield</div>
+    </div>
+
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Saturday · March 28</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Highway to Hell</div>
+    </div>
+
+    <div style="margin-bottom:2rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Monday · March 30 · Double Feature</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">The Mummy (1932)</div>
+      <div style="font-size:0.85rem;color:rgba(240,230,200,0.4);margin:0.25rem 0 0.5rem;">followed by</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">The Invisible Man (1933)</div>
+    </div>
+
+    <a href="http://maps.secondlife.com/secondlife/Bigger%20Bang%20Park/107/216/25" class="btn primary" target="_blank" style="font-size:0.68rem;display:inline-block;">Teleport to Unbound Grounds</a>
+  </div>
 </div>
 
 <!-- CRIXUS SCHEDULE MODAL -->
