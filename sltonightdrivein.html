@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Overlook Drive-In — SL Tonight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Special+Elite&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2f;
+    --cream: #f0e6c8;
+    --dark: #0a0804;
+    --dark-mid: #13100a;
+    --dark-warm: #1a1410;
+    --red: #8b1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Crimson Text', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* NAV */
+  .nav {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    background: var(--dark-mid);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav a {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gold-dim);
+    transition: color 0.2s;
+  }
+  .nav a:hover { color: var(--gold); }
+  .nav-sep { color: rgba(201,168,76,0.3); }
+
+  /* MARQUEE HEADER */
+  .marquee-header {
+    background: var(--dark-mid);
+    border-bottom: 3px solid var(--gold-dim);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .marquee-lights {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .bulb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  .bulb:nth-child(even) { animation-delay: 0.75s; }
+  .bulb:nth-child(3n) { animation-delay: 0.5s; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--gold); }
+    50% { opacity: 0.2; box-shadow: none; }
+  }
+
+  .drive-in-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-shadow: 0 0 30px rgba(201,168,76,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  .drive-in-sub {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* SCREEN */
+  .screen-wrapper {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .screen-frame {
+    background: #000;
+    border: 4px solid #2a2018;
+    box-shadow:
+      0 0 0 2px var(--gold-dim),
+      0 0 40px rgba(0,0,0,0.8),
+      inset 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    aspect-ratio: 16/9;
+  }
+
+  .screen-frame iframe,
+  .screen-frame video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+  }
+
+  .screen-label {
+    position: absolute;
+    bottom: -2rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  /* NOW SHOWING */
+  .now-showing {
+    max-width: 900px;
+    margin: 3rem auto 1rem;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .now-showing-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .now-showing-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold-dim), transparent);
+  }
+
+  /* CONTROLS */
+  .controls {
+    max-width: 900px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn:hover { background: var(--gold); color: var(--dark); }
+  .btn.active { background: var(--gold); color: var(--dark); }
+
+  /* PLAYLIST SECTIONS */
+  .playlist-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .playlist-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .playlist-sub {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .playlist-item {
+    background: var(--dark-warm);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 0.95rem;
+    color: rgba(240,230,200,0.7);
+    text-align: left;
+    width: 100%;
+  }
+
+  .playlist-item:hover {
+    border-color: var(--gold-dim);
+    color: var(--cream);
+    background: #1d1912;
+  }
+
+  .playlist-item.playing {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* JINGLE PLAYER */
+  .jingle-bar {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.25rem 1.5rem;
+    background: var(--dark-warm);
+    border: 1px solid rgba(201,168,76,0.15);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .jingle-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .jingle-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    flex: 1;
+  }
+
+  audio {
+    flex: 2;
+    min-width: 200px;
+    height: 32px;
+    accent-color: var(--gold);
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .div-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim), transparent); }
+  .div-sym { color: var(--gold-dim); font-size: 0.8rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+    background: var(--dark-mid);
+  }
+  .footer-tag {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html">← SL Tonight</a>
+  <span class="nav-sep">·</span>
+  <a href="index.html#friends">Unbound Grounds</a>
+</nav>
+
+<!-- MARQUEE -->
+<div class="marquee-header">
+  <div class="marquee-lights">
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+  </div>
+  <div class="drive-in-title">The Overlook Drive-In</div>
+  <div class="drive-in-sub">SL Tonight &nbsp;·&nbsp; Unbound Grounds &nbsp;·&nbsp; Features Nightly</div>
+  <div class="marquee-lights" style="margin-top:1rem;margin-bottom:0;">
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+  </div>
+</div>
+
+<!-- SCREEN -->
+<div class="screen-wrapper">
+  <div class="screen-frame">
+    <iframe id="main-player"
+      src="https://archive.org/embed/sltonightoverlook"
+      allowfullscreen
+      allow="autoplay">
+    </iframe>
+  </div>
+  <div class="screen-label" id="now-playing-label">Feature Presentation — The Overlook Drive-In</div>
+</div>
+
+<!-- NOW SHOWING -->
+<div class="now-showing">
+  <div class="now-showing-label">Now Showing</div>
+  <div class="now-showing-line"></div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="btn active" onclick="playAnnouncement()">▶ Announcement</button>
+  <button class="btn" onclick="playRandom()">⟳ Random Feature</button>
+  <button class="btn" onclick="playRandomTales()">🕯 Tales That Terrify</button>
+  <button class="btn" onclick="playRandomToons()">🎬 SL Toons</button>
+</div>
+
+<!-- JINGLE -->
+<div class="jingle-bar">
+  <div class="jingle-label">Theme</div>
+  <div class="jingle-title">Tales That Terrify — Official Jingle</div>
+  <audio controls src="Tales_That_Terrify_.mp3">
+    Your browser does not support audio.
+  </audio>
+</div>
+
+<div class="divider">
+  <div class="div-line"></div>
+  <div class="div-sym">✦</div>
+  <div class="div-line"></div>
+</div>
+
+<!-- TALES THAT TERRIFY PLAYLIST -->
+<div class="playlist-section">
+  <div class="playlist-title">Tales That Terrify</div>
+  <div class="playlist-sub">Alfred Hitchcock Presents — Stories for Late at Night · Series 2</div>
+  <div class="playlist-grid" id="tales-grid"></div>
+</div>
+
+<div class="divider">
+  <div class="div-line"></div>
+  <div class="div-sym">✦</div>
+  <div class="div-line"></div>
+</div>
+
+<!-- SL TOONS PLAYLIST -->
+<div class="playlist-section">
+  <div class="playlist-title">SL Toons</div>
+  <div class="playlist-sub">Cartoons · Midnight Series · Nature Documentaries</div>
+  <div class="playlist-grid" id="toons-grid"></div>
+</div>
+
+<div class="divider">
+  <div class="div-line"></div>
+  <div class="div-sym">✦</div>
+  <div class="div-line"></div>
+</div>
+
+<!-- ARCHIVE FEATURES -->
+<div class="playlist-section">
+  <div class="playlist-title">From the Archive</div>
+  <div class="playlist-sub">SL Tonight Original Films</div>
+  <div class="playlist-grid">
+    <button class="playlist-item" onclick="playArchive('sltonightoverlook', 'The Overlook — Feature Presentation Announcement')">
+      The Overlook Announcement
+    </button>
+    <button class="playlist-item" onclick="playArchive('sixrooms', 'Six Rooms — SL Tonight')">
+      Six Rooms
+    </button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-tag" style="margin-bottom:0.5rem;">The Overlook Drive-In · SL Tonight · Unbound Grounds</div>
+  <div class="footer-tag" style="font-size:0.5rem;opacity:0.4;">
+    <a href="index.html" style="color:inherit;text-decoration:none;">www.sltonight.com</a>
+  </div>
+</footer>
+
+<script>
+  // Tales That Terrify playlist (YouTube video IDs + titles)
+  const talesPlaylist = [
+    { id: 'L8kFonDg-Pg', title: 'Back There in the Grass' },
+    { id: '7Vd4tTiVdIU', title: 'Witches Tales Issue 1' },
+    { id: 'pnH8NcfAP4o', title: 'Karen Knockout' },
+  ];
+
+  // SL Toons playlist (YouTube video IDs + titles)
+  const toonsPlaylist = [
+    { id: '_2yQXBx1u_M', title: "One-Eyed Willy's Requiem" },
+    { id: 'p3f6OE_esy8', title: 'Guillermo' },
+    { id: 'qGOBZiFuy64', title: 'What Was the Point?' },
+    { id: 'YCZqyuxNT_0', title: 'SL Toons Short' },
+  ];
+
+  const allVideos = [...talesPlaylist, ...toonsPlaylist];
+
+  function setPlayer(src, label) {
+    const player = document.getElementById('main-player');
+    player.src = src;
+    document.getElementById('now-playing-label').textContent = label;
+    document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('playing'));
+    window.scrollTo({ top: document.querySelector('.screen-wrapper').offsetTop - 20, behavior: 'smooth' });
+  }
+
+  function playYouTube(videoId, title) {
+    setPlayer(
+      `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`,
+      title
+    );
+    document.querySelectorAll('.playlist-item').forEach(i => {
+      if (i.dataset.id === videoId) i.classList.add('playing');
+    });
+  }
+
+  function playArchive(identifier, title) {
+    setPlayer(`https://archive.org/embed/${identifier}`, title);
+  }
+
+  function playAnnouncement() {
+    playArchive('sltonightoverlook', 'Feature Presentation — The Overlook Drive-In');
+    document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  function playRandom() {
+    const v = allVideos[Math.floor(Math.random() * allVideos.length)];
+    playYouTube(v.id, v.title);
+  }
+
+  function playRandomTales() {
+    const v = talesPlaylist[Math.floor(Math.random() * talesPlaylist.length)];
+    playYouTube(v.id, v.title);
+  }
+
+  function playRandomToons() {
+    const v = toonsPlaylist[Math.floor(Math.random() * toonsPlaylist.length)];
+    playYouTube(v.id, v.title);
+  }
+
+  // Build playlist grids
+  function buildGrid(containerId, playlist) {
+    const grid = document.getElementById(containerId);
+    playlist.forEach(v => {
+      const btn = document.createElement('button');
+      btn.className = 'playlist-item';
+      btn.dataset.id = v.id;
+      btn.textContent = v.title;
+      btn.onclick = () => playYouTube(v.id, v.title);
+      grid.appendChild(btn);
+    });
+  }
+
+  buildGrid('tales-grid', talesPlaylist);
+  buildGrid('toons-grid', toonsPlaylist);
+</script>
+</body>
+</html>
