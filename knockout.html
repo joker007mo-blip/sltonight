@@ -136,6 +136,558 @@
   .btn.primary:hover { background: var(--yellow); border-color: var(--yellow); }
   .btn.steam { border-color: #1b9cd8; color: #1b9cd8; }
   .btn.steam:hover { background: #1b9cd8; color: var(--dark); }
+  .btn.android { border-color: #78c257; color: #78c257; }
+  .btn.android:hover { background: #78c257; color: var(--dark); }
+
+  /* LIVE BADGE */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    border: 1px solid rgba(255,230,0,0.4);
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,230,0,0.06);
+  }
+  .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    animation: pulse-dot 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* BAND */
+  .band {
+    background: var(--dark-mid);
+    border-top: 1px solid rgba(255,45,120,0.15);
+    border-bottom: 1px solid rgba(255,45,120,0.15);
+    padding: 1rem 2rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .band-text {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: rgba(255,45,120,0.5);
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: scroll-band 20s linear infinite;
+    display: inline-block;
+  }
+  @keyframes scroll-band {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* SECTION */
+  .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    color: rgba(255,45,120,0.6);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+  }
+  .section-body {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(240,230,200,0.75);
+    max-width: 680px;
+  }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .feature-card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(255,45,120,0.12);
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .feature-card:hover { border-color: rgba(255,45,120,0.35); }
+  .feature-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .feature-name {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .feature-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(240,230,200,0.65);
+  }
+
+  /* PROMO CODES */
+  .promo-block {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 680px;
+  }
+  .promo-card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.25rem 1.5rem;
+  }
+  .promo-code {
+    font-family: 'Special Elite', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    color: var(--yellow);
+    background: rgba(255,230,0,0.06);
+    border: 1px solid rgba(255,230,0,0.2);
+    padding: 0.2rem 0.6rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  .promo-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(240,230,200,0.65);
+  }
+  .promo-tag {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,45,120,0.6);
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+
+  /* PLATFORM BUTTONS */
+  .platform-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,45,120,0.4), transparent);
+  }
+  .divider-sym { color: var(--pink); opacity: 0.5; }
+
+  /* VIDEOS */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 2rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .video-card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(255,45,120,0.15);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .video-card:hover { border-color: rgba(255,45,120,0.4); }
+
+  .video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .video-info { padding: 1rem 1.25rem; }
+  .video-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    color: rgba(255,45,120,0.6);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .video-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,45,120,0.15);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: var(--dark-mid);
+  }
+  .footer-back {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .footer-back:hover { color: var(--gold); }
+  .footer-fine {
+    font-size: 0.78rem;
+    color: rgba(240,230,200,0.18);
+    line-height: 1.7;
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html">← SL Tonight</a>
+  <span class="nav-sep">·</span>
+  <a href="index.html#friends">Friends of the Show</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <img src="ko2.png" alt="Karen Knockout" class="hero-poster">
+    <div class="live-badge"><span class="live-dot"></span> Now Live</div>
+    <div class="hero-band">The Dial Tones × Exceptionull Games</div>
+    <p class="hero-desc">
+      The Dial Tones deliver a chiptune rock hip-hop boxing anthem for 
+      Knockout 2: Wrath of the Karen — FBI agent versus entitled Karens 
+      in epic punch-out chaos. Hosted by Felix Lubezki, live in Second Life.
+    </p>
+    <div class="hero-links">
+      <a href="https://youtu.be/pnH8NcfAP4o" class="btn primary" target="_blank">Watch the Music Video</a>
+      <a href="https://store.steampowered.com/app/2349350/Knockout_2_Wrath_of_the_Karen/" class="btn steam" target="_blank">Get it on Steam</a>
+      <a href="https://play.google.com/store/apps/details?id=com.exceptionullgames.knockout.two" class="btn android" target="_blank">Get it on Android</a>
+    </div>
+  </div>
+</div>
+
+<div class="band">
+  <span class="band-text">KAREN KNOCKOUT &nbsp;·&nbsp; THE DIAL TONES &nbsp;·&nbsp; SL TONIGHT HOUSE BAND &nbsp;·&nbsp; KNOCKOUT 2: WRATH OF THE KAREN &nbsp;·&nbsp; EXCEPTIONULL GAMES &nbsp;·&nbsp; NOW LIVE ON STEAM &amp; ANDROID &nbsp;·&nbsp; iOS COMING SOON &nbsp;·&nbsp; KAREN KNOCKOUT &nbsp;·&nbsp; THE DIAL TONES &nbsp;·&nbsp;</span>
+</div>
+
+<div class="section reveal">
+  <div class="section-label">About the Game</div>
+  <h2 class="section-title">Knockout 2: Wrath of the Karen</h2>
+  <p class="section-body">
+    As an FBI agent, research a terrifying disease spreading across the country 
+    in this classic Punch-Out!! inspired game. A much darker, older secret lurks 
+    in the shadows — an ancient evil rises to threaten national security, the world, 
+    and your quarterly performance bonus.
+  </p>
+  <br>
+  <p class="section-body">
+    Now live with 8 fights and a full Prestige system, Missions, Equipment, and more. 
+    iOS release pending review.
+  </p>
+
+  <div class="platform-links">
+    <a href="https://store.steampowered.com/app/2349350/Knockout_2_Wrath_of_the_Karen/" class="btn steam" target="_blank">Get it on Steam</a>
+    <a href="https://play.google.com/store/apps/details?id=com.exceptionullgames.knockout.two" class="btn android" target="_blank">Get it on Android</a>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- FEATURES -->
+<div class="section reveal" style="padding-bottom: 1rem;">
+  <div class="section-label">What's Inside</div>
+  <h2 class="section-title">Features</h2>
+  <p class="section-body">Everything packed into the global launch of Knockout 2.</p>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <span class="feature-icon">🥊</span>
+      <div class="feature-name">8 Fights + Prestige</div>
+      <div class="feature-desc">Complete the base 8 fights, then push further with the all-new Prestige system. One prestige level live now, with a second currently in the works.</div>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">📋</span>
+      <div class="feature-name">Missions System</div>
+      <div class="feature-desc">Daily, weekly, and monthly missions — all procedurally generated so every player gets the same missions (except the Personal Daily, unique to you). Earn Fed Creds and compete with friends to see who clears them fastest.</div>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🧰</span>
+      <div class="feature-name">Equipment System</div>
+      <div class="feature-desc">Stat-modifying gear that changes how you fight or gives you an edge in the ring. More equipment coming soon.</div>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🎨</span>
+      <div class="feature-name">Customization</div>
+      <div class="feature-desc">A new, more advanced character customization system — currently featuring clothing colors with more options, including a male character, targeted for an upcoming release.</div>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🎬</span>
+      <div class="feature-name">Cutscenes & Story</div>
+      <div class="feature-desc">Knockout cutscenes for all characters, an updated pre-fight story dialogue system with an actual storyline, an enhanced News Scene, and unlockable lore articles on the Match Select screen.</div>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🌐</span>
+      <div class="feature-name">Localization & Controls</div>
+      <div class="feature-desc">Community translations for Portuguese, Spanish, and French. Full controller and keyboard remapping in-game, with more languages in the works.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal" style="margin-top: 3rem;">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- PROMO CODES -->
+<div class="section reveal">
+  <div class="section-label">Promo Codes</div>
+  <h2 class="section-title">Enter the Ring with a Bonus</h2>
+  <p class="section-body">Two codes active at launch — enter them in-game to claim your rewards.</p>
+
+  <div class="promo-block">
+    <div class="promo-card">
+      <span class="promo-tag">Never Expires · Legendary Item</span>
+      <div class="promo-code">RealCivilEngineer</div>
+      <p class="promo-desc">Unlocks a legendary Hard Hat of +1 Engineering, giving you a slight defensive edge in fights. A nod to Matt from RealCivilEngineer — here's hoping he gives the game a try.</p>
+    </div>
+    <div class="promo-card">
+      <span class="promo-tag">Expires in One Month · Fed Creds</span>
+      <div class="promo-code">LoveTheTentacle</div>
+      <p class="promo-desc">A thank-you to patient fans and enthusiasts. Redeem for 1,000,000 Fed Creds. Don't wait — this one won't last.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- PRICING NOTE -->
+<div class="section reveal" style="padding-top: 3rem; padding-bottom: 3rem;">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Play Free, Go Further</h2>
+  <p class="section-body">
+    No in-game advertisements. On mobile, the first three characters are free — 
+    unlock the full game for $7.99 on Android and iOS to support continued development. 
+    Steam includes the full game at purchase.
+  </p>
+  <div class="platform-links">
+    <a href="https://store.steampowered.com/app/2349350/Knockout_2_Wrath_of_the_Karen/" class="btn steam" target="_blank">Get it on Steam</a>
+    <a href="https://play.google.com/store/apps/details?id=com.exceptionullgames.knockout.two" class="btn android" target="_blank">Get it on Android</a>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- VIDEOS -->
+<div class="section reveal" style="padding-bottom:1rem;">
+  <div class="section-label">Videos</div>
+  <h2 class="section-title">Watch</h2>
+</div>
+
+<div class="video-grid">
+  <div class="video-card reveal">
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/pnH8NcfAP4o" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-info">
+      <div class="video-label">The Dial Tones</div>
+      <div class="video-title">Karen Knockout — Official Music Video</div>
+    </div>
+  </div>
+
+  <div class="video-card reveal">
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/hwV4PlQuEnA" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-info">
+      <div class="video-label">Exceptionull Games</div>
+      <div class="video-title">Knockout 2: Wrath of the Karen — Official Trailer</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-back">← Back to SL Tonight</a>
+  <div class="footer-fine">
+    Karen Knockout created by The Dial Tones for SL Tonight.<br>
+    Knockout 2: Wrath of the Karen developed by Exceptionull Games.<br>
+    © 2024 SL Tonight / Felix Lubezki
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>    z-index: 1000;
+  }
+
+  /* NAV */
+  .nav {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,45,120,0.2);
+    background: var(--dark-mid);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav a {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gold-dim);
+    transition: color 0.2s;
+  }
+  .nav a:hover { color: var(--gold); }
+  .nav-sep { color: rgba(201,168,76,0.3); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #1a0025 0%, #0a0008 70%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(106,13,173,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(255,45,120,0.1) 0%, transparent 40%);
+  }
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-poster {
+    width: min(320px, 70vw);
+    margin: 0 auto 2.5rem;
+    display: block;
+    filter: drop-shadow(0 0 40px rgba(255,45,120,0.4));
+    animation: arcade-glow 2s ease-in-out infinite;
+  }
+  @keyframes arcade-glow {
+    0%, 100% { filter: drop-shadow(0 0 25px rgba(255,45,120,0.3)); }
+    50% { filter: drop-shadow(0 0 55px rgba(255,45,120,0.7)) drop-shadow(0 0 80px rgba(106,13,173,0.4)); }
+  }
+
+  .hero-band {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(240,230,200,0.7);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--pink);
+    color: var(--pink);
+    background: transparent;
+    transition: all 0.25s ease;
+    display: inline-block;
+  }
+  .btn:hover { background: var(--pink); color: var(--dark); }
+  .btn.primary { background: var(--pink); color: var(--dark); }
+  .btn.primary:hover { background: var(--yellow); border-color: var(--yellow); }
+  .btn.steam { border-color: #1b9cd8; color: #1b9cd8; }
+  .btn.steam:hover { background: #1b9cd8; color: var(--dark); }
 
   /* BAND */
   .band {
