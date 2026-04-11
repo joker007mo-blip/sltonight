@@ -823,10 +823,10 @@
   const panelNum = dayOfYear % obhTotal;
   const fileNum = 270101 + panelNum;
   const obhImg = document.getElementById('obh-img');
-  obhImg.src = 'our boarding house 1927 1/obh' + fileNum + '.jpg';
+  obhImg.src = 'our boarding house 1927 1/obh' + fileNum + '.png';
   obhImg.onerror = function() {
     this.onerror = null;
-    this.src = 'obh' + fileNum + '.jpg';
+    this.src = 'obh' + fileNum + '.png';
   };
 
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
