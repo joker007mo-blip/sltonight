@@ -292,40 +292,49 @@
 </footer>
 
 <script>
-  // Our Boarding House — rotates through 100 panels by day of year
-  const total = 100;
-  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  const panelNum = dayOfYear % total;
+  // Our Boarding House — exact filenames only, no guessing
+  const obhFiles = [
+    'obh270101.png','obh270103.png','obh270104.png','obh270105.png','obh270106.png',
+    'obh270107.png','obh270108.png','obh270110.png','obh270111.png','obh270112.png',
+    'obh270113.png','obh270114.png','obh270115.png','obh270117.png','obh270118.png',
+    'obh270119.png','obh270120.png','obh270121.png','obh270122.png','obh270124.png',
+    'obh270125.png','obh270126.png','obh270127.png','obh270128.png','obh270129.png',
+    'obh270131.png','obh270201.png','obh270202.png','obh270203.png','obh270204.png',
+    'obh270205.png','obh270207.png','obh270208.png','obh270209.png','obh270210.png',
+    'obh270211.png','obh270212.png','obh270214.png','obh270215.png','obh270216.png',
+    'obh270217.png','obh270218.png','obh270219.png','obh270221.png','obh270222.png',
+    'obh270223.png','obh270224.png','obh270225.png','obh270226.png','obh270228.png',
+    'obh270301.png','obh270302.png','obh270303.png','obh270304.png','obh270305.png',
+    'obh270307.png','obh270308.png','obh270309.png','obh270310.png','obh270311.png',
+    'obh270312.png','obh270314.png','obh270315.png','obh270316.png','obh270317.png',
+    'obh270318.png','obh270319.png','obh270321.png','obh270322.png','obh270323.png',
+    'obh270324.png','obh270325.png','obh270326.png','obh270328.png','obh270329.png',
+    'obh270330.png','obh270331.png','obh270401.png','obh270402.png','obh270404.png',
+    'obh270405.png','obh270406.png','obh270407.png','obh270408.png','obh270409.png',
+    'obh270411.png','obh270412.png','obh270413.png','obh270414.png','obh270415.png',
+    'obh270416.png','obh270418.png','obh270419.png','obh270420.png','obh270421.png',
+    'obh270422.png','obh270423.png','obh270425.png','obh270426.png'
+  ];
 
-  // Build filename: obh270101.png style — panels named obh270101 through obh270200
-  // Base number is 270101, increment by 1 each panel
-  const baseNum = 270101;
-  const fileNum = baseNum + panelNum;
-  const filename = 'our boarding house 1927 1/obh' + fileNum + '.png';
+  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  const panelNum = dayOfYear % obhFiles.length;
 
   const img = document.getElementById('obh-img');
   const caption = document.getElementById('obh-caption');
   const nav = document.getElementById('obh-nav');
 
-  img.src = filename;
-  img.alt = 'Our Boarding House · Panel ' + (panelNum + 1) + ' of ' + total;
+  img.src = 'our boarding house 1927 1/' + obhFiles[panelNum];
+  img.alt = 'Our Boarding House · Panel ' + (panelNum + 1) + ' of ' + obhFiles.length;
 
-  // Format a display date — starts Jan 1 1927, advances one per day
-  const startDate = new Date(1927, 0, 1);
-  const displayDate = new Date(startDate);
-  displayDate.setDate(displayDate.getDate() + panelNum);
+  // Parse real date from filename: obh270101 = Jan 1, 1927
+  const fname = obhFiles[panelNum].replace('obh','').replace('.png','');
+  const yr = 1900 + parseInt(fname.substring(0,2));
+  const mo = parseInt(fname.substring(2,4)) - 1;
+  const dy = parseInt(fname.substring(4,6));
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const dateStr = months[displayDate.getMonth()] + ' ' + displayDate.getDate() + ', ' + displayDate.getFullYear();
 
-  caption.textContent = 'Our Boarding House · Gene Ahern · ' + dateStr + ' · NEA Service Inc.';
-  nav.textContent = 'Panel ' + (panelNum + 1) + ' of ' + total;
-
-  // Fallback if image doesn't load — try zero-padded or alternate naming
-  img.onerror = function() {
-    // Try without subfolder in case files are at root
-    this.onerror = null;
-    this.src = 'obh' + fileNum + '.png';
-  };
+  caption.textContent = 'Our Boarding House · Gene Ahern · ' + months[mo] + ' ' + dy + ', ' + yr + ' · NEA Service Inc.';
+  nav.textContent = 'Panel ' + (panelNum + 1) + ' of ' + obhFiles.length;
 </script>
 
 <script>
