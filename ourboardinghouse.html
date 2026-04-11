@@ -297,11 +297,11 @@
   const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
   const panelNum = dayOfYear % total;
 
-  // Build filename: obh270101.jpg style — panels named obh270101 through obh270200
+  // Build filename: obh270101.png style — panels named obh270101 through obh270200
   // Base number is 270101, increment by 1 each panel
   const baseNum = 270101;
   const fileNum = baseNum + panelNum;
-  const filename = 'our boarding house 1927 1/obh' + fileNum + '.jpg';
+  const filename = 'our boarding house 1927 1/obh' + fileNum + '.png';
 
   const img = document.getElementById('obh-img');
   const caption = document.getElementById('obh-caption');
@@ -324,7 +324,7 @@
   img.onerror = function() {
     // Try without subfolder in case files are at root
     this.onerror = null;
-    this.src = 'obh' + fileNum + '.jpg';
+    this.src = 'obh' + fileNum + '.png';
   };
 </script>
 
