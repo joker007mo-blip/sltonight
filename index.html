@@ -766,17 +766,20 @@
   <div class="divider-line"></div>
 </div>
 
-<!-- FROM THE ARCHIVE — two strips side by side -->
-<div style="max-width:1100px;margin:0 auto;padding:4rem 2rem 0;">
-  <div class="section-label reveal">From the Archive</div>
-  <h2 class="section-title reveal" style="margin-bottom:0.5rem;">Daily Comic Strips</h2>
-  <p class="section-body reveal" style="margin-bottom:3rem;color:rgba(240,230,200,0.35);">Public domain classics — one panel per day, rotating automatically.</p>
+<!-- FROM THE ARCHIVE — FUNNY PAPERS SECTION -->
+
+<!-- Newspaper section masthead -->
+<div style="background:var(--dark-mid);border-top:3px double rgba(201,168,76,0.35);border-bottom:3px double rgba(201,168,76,0.35);padding:1.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.6em;color:rgba(201,168,76,0.35);text-transform:uppercase;margin-bottom:0.4rem;">SL Tonight Presents</div>
+  <div style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--gold);letter-spacing:0.04em;line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,0.5);">The Funny Papers</div>
+  <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-top:0.5rem;">Public Domain · One Strip Per Day · Est. 1904</div>
 </div>
 
-<div class="archive-grid reveal" style="max-width:1100px;margin:0 auto;padding:0 2rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+<!-- TWO DAILY STRIPS SIDE BY SIDE — unchanged -->
+<div style="max-width:1100px;margin:0 auto;padding:3rem 2rem 0;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="archive-grid">
 
   <!-- RAREBIT FIEND -->
-  <div>
+  <div class="reveal">
     <div style="margin-bottom:1rem;">
       <div class="section-label">Winsor McCay · c.1904–1913</div>
       <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2;margin-bottom:0.25rem;">Dream of the Rarebit Fiend</h3>
@@ -792,7 +795,7 @@
   </div>
 
   <!-- OUR BOARDING HOUSE -->
-  <div>
+  <div class="reveal">
     <div style="margin-bottom:1rem;">
       <div class="section-label">Gene Ahern · NEA Service · 1927</div>
       <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2;margin-bottom:0.25rem;">Our Boarding House</h3>
@@ -812,10 +815,51 @@
 
 </div>
 
+<!-- COLUMN RULE between strips and Boob -->
+<div style="max-width:1100px;margin:3rem auto 0;padding:0 2rem;">
+  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="text-align:center;margin-top:-0.6rem;"><span style="background:var(--dark);padding:0 0.75rem;font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.4em;color:rgba(201,168,76,0.3);text-transform:uppercase;">✦</span></div>
+</div>
+
+<!-- BOOB McNUTT — centered, visitor-controlled -->
+<div style="max-width:780px;margin:2.5rem auto 0;padding:0 2rem;" class="reveal">
+
+  <!-- Strip header -->
+  <div style="text-align:center;margin-bottom:1.25rem;">
+    <div class="section-label">Rube Goldberg · King Features Syndicate · 1918–1934</div>
+    <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;color:var(--gold);line-height:1.1;margin-bottom:0.3rem;">Boob McNutt</h3>
+    <p style="font-style:italic;font-size:0.88rem;color:rgba(240,230,200,0.35);">Public Domain · Browse the full archive</p>
+  </div>
+
+  <!-- Comic panel frame -->
+  <div style="border:3px solid #2a1f0a;box-shadow:4px 4px 0 rgba(0,0,0,0.5),0 0 0 1px rgba(201,168,76,0.2);background:#e8dfc0;padding:5px;margin-bottom:0.75rem;">
+    <img id="boob-img" src="" alt="Boob McNutt by Rube Goldberg" style="width:100%;display:block;filter:sepia(0.1) contrast(1.04);">
+  </div>
+
+  <!-- Caption -->
+  <div style="text-align:center;font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:0.85rem;color:rgba(240,230,200,0.25);margin-bottom:1rem;" id="boob-caption"></div>
+
+  <!-- Prev / Next controls -->
+  <div style="display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
+    <button onclick="boobNav(-1)" style="font-family:'Special Elite',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.65rem 1.5rem;border:1px solid rgba(201,168,76,0.35);color:var(--gold);background:transparent;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.background='transparent'">← Prev</button>
+    <div style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,168,76,0.35);" id="boob-counter"></div>
+    <button onclick="boobNav(1)" style="font-family:'Special Elite',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.65rem 1.5rem;border:1px solid rgba(201,168,76,0.35);color:var(--gold);background:transparent;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.background='transparent'">Next →</button>
+  </div>
+
+  <!-- Info / archive link -->
+  <div style="background:var(--dark-warm);border:1px solid rgba(201,168,76,0.1);padding:1.25rem 1.5rem;text-align:center;">
+    <p style="font-size:0.92rem;line-height:1.75;color:rgba(240,230,200,0.5);margin-bottom:0.75rem;">Rube Goldberg's long-running Sunday strip about a lovable, magnificently incompetent everyman. The same Rube Goldberg whose name became a dictionary entry for over-engineered absurdity. This is where that started. Running 1918–1934, King Features Syndicate.</p>
+    <a href="https://en.wikipedia.org/wiki/Boob_McNutt" target="_blank" style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;border:1px solid rgba(201,168,76,0.18);padding:0.4rem 1rem;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.18)';this.style.color='var(--gold-dim)'">Boob McNutt — Wikipedia Archive Info →</a>
+  </div>
+
+</div>
+
+<!-- bottom margin -->
+<div style="height:4rem;"></div>
+
 <script>
   // ── RAREBIT FIEND ──────────────────────────────────────────────────
   const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-
   const rarebitTotal = 63;
   const stripNum = dayOfYear % rarebitTotal;
   document.getElementById('rarebit-img').src = 'rarbit' + stripNum + '.jpg';
@@ -847,8 +891,6 @@
   const panelNum = dayOfYear % obhFiles.length;
   const obhImg = document.getElementById('obh-img');
   obhImg.src = 'our boarding house 1927 1/' + obhFiles[panelNum];
-
-  // Parse date from filename e.g. obh270101 = Jan 1 1927
   const fname = obhFiles[panelNum].replace('obh','').replace('.png','');
   const yr = 1900 + parseInt(fname.substring(0,2));
   const mo = parseInt(fname.substring(2,4)) - 1;
@@ -856,6 +898,52 @@
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   document.getElementById('obh-caption').textContent = 'Our Boarding House · Gene Ahern · ' + months[mo] + ' ' + dy + ', ' + yr;
   document.getElementById('obh-nav').textContent = 'Panel ' + (panelNum + 1) + ' of ' + obhFiles.length;
+
+  // ── BOOB McNUTT ────────────────────────────────────────────────────
+  const boobFiles = [
+    'BoobMcnutt-26Aug08.jpg','BoobMcnutt-31Feb15.jpg','BoobMcnutt-34Jul15.jpg',
+    'BoobMcNutt-201219-F.jpg','BoobMcNutt-220820-F.jpg','BoobMcNutt-230527-F.jpg',
+    'BoobMcNutt-230729-F.jpg','BoobMcNutt-230909-F.jpg','BoobMcNutt-230923-F.jpg',
+    'BoobMcNutt-231028-F.jpg','BoobMcNutt-231111-F.jpg','BoobMcNutt-231230-F.jpg',
+    'BoobMcNutt-251115-F.jpg','BoobMcNutt-260103-F.jpg','BoobMcNutt-260110-F.jpg',
+    'BoobMcNutt-260117-F.jpg','BoobMcNutt-260207-F.jpg','BoobMcNutt-260221-F.jpg',
+    'BoobMcNutt-260314-F.jpg','BoobMcNutt-260321-F.jpg','BoobMcNutt-260516-F.jpg',
+    'BoobMcNutt-260523-F.jpg','BoobMcNutt-260606-F.jpg','BoobMcNutt-260613-F.jpg',
+    'BoobMcNutt-260725-F.jpg','BoobMcNutt-260801-F.jpg','BoobMcNutt-260808-F.jpg',
+    'BoobMcNutt-261003-F.jpg','BoobMcNutt-261010-F.jpg','BoobMcNutt-261121-F.jpg',
+    'BoobMcNutt-261128-F.jpg','BoobMcNutt-261219-F.jpg','BoobMcNutt-280401-F.jpg',
+    'BoobMcNutt-280826-F.jpg','BoobMcNutt-290804-F.jpg','BoobMcNutt-291208-F.jpg',
+    'BoobMcNutt-300914-F.jpg','BoobMcNutt-301019-F.jpg','BoobMcNutt-301026-F.jpg',
+    'BoobMcNutt-301123-F.jpg','BoobMcNutt-301214-F.jpg','BoobMcNutt-310215-F.jpg',
+    'BoobMcNutt-310614-F.jpg','BoobMcNutt-311025-F.jpg','BoobMcNutt-311108-F.jpg',
+    'BoobMcNutt-311129-F.jpg','BoobMcNutt-311215-F.jpg','BoobMcNutt-311220-F.jpg',
+    'BoobMcNutt-311227-F.jpg','BoobMcNutt-320103-F.jpg','BoobMcNutt-320117-F.jpg',
+    'BoobMcNutt-320124-F.jpg','BoobMcNutt-320207-F.jpg','BoobMcNutt-320306-F.jpg',
+    'BoobMcNutt-320424-F.jpg','BoobMcNutt-320508-F.jpg','BoobMcNutt-320529-F.jpg',
+    'BoobMcNutt-320703-F.jpg','BoobMcNutt-320814-F.jpg','BoobMcNutt-320828-F.jpg',
+    'BoobMcNutt-320904-F.jpg','BoobMcNutt-320911-F.jpg','BoobMcNutt-321002-F.jpg',
+    'BoobMcNutt-321009-F.jpg','BoobMcNutt-321106-F.jpg','BoobMcNutt-321225-F.jpg',
+    'BoobMcnutt-340715-F.jpg'
+  ];
+
+  let boobIndex = dayOfYear % boobFiles.length;
+
+  function boobShow() {
+    const f = boobFiles[boobIndex];
+    document.getElementById('boob-img').src = 'boob/' + f;
+    // Parse label from filename
+    const base = f.replace('BoobMcnutt-','').replace('BoobMcNutt-','').replace('-F.jpg','').replace('.jpg','');
+    document.getElementById('boob-caption').textContent = 'Boob McNutt · Rube Goldberg · ' + base;
+    document.getElementById('boob-counter').textContent = (boobIndex + 1) + ' of ' + boobFiles.length;
+  }
+
+  function boobNav(dir) {
+    boobIndex = (boobIndex + dir + boobFiles.length) % boobFiles.length;
+    boobShow();
+    document.getElementById('boob-img').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  boobShow();
 </script>
 
 <!-- COSMIC WHISPERS MODAL -->
