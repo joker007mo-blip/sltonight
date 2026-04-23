@@ -31,7 +31,7 @@
     pointer-events: none;
     z-index: 1000;
   }
-  /* NAV (same as drive-in) */
+  /* NAV */
   .nav {
     padding: 1rem 2rem;
     border-bottom: 1px solid rgba(201,168,76,0.15);
@@ -52,7 +52,7 @@
   .nav a:hover { color: var(--gold); }
   .nav-sep { color: rgba(201,168,76,0.3); }
 
-  /* MARQUEE HEADER (comic-themed) */
+  /* MARQUEE HEADER */
   .marquee-header {
     background: var(--dark-mid);
     border-bottom: 3px solid var(--gold-dim);
@@ -88,21 +88,36 @@
     margin-top: 0.4rem;
   }
 
- <!-- SCREEN — COMIC READER -->
-<div class="screen-wrapper" style="max-width: 1000px; margin: 3rem auto; padding: 0 1rem;">
-  <div class="screen-frame" style="background: #000; border: 4px solid #2a2018; box-shadow: 0 0 0 2px var(--gold-dim), 0 0 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5); position: relative; height: 85vh; min-height: 600px;">
-    <iframe id="main-player"
-      src="https://archive.org/embed/funnies_202604/Beverly_Hillbillies_001__c2c___Dell_1963_"
-      style="width: 100%; height: 100%; display: block; border: none;"
-      allowfullscreen>
-    </iframe>
-  </div>
-  <div class="screen-label" id="now-reading-label" style="position: static; margin-top: 1.5rem; text-align: center;">
-    Now Reading — Beverly Hillbillies #1 (Dell 1963) • Use arrow keys or controls to flip pages
-  </div>
-</div>
+  /* SCREEN — COMIC READER */
+  .screen-wrapper {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+  .screen-frame {
+    background: #000;
+    border: 4px solid #2a2018;
+    box-shadow: 0 0 0 2px var(--gold-dim), 0 0 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+  }
+  .screen-frame iframe {
+    width: 100%; 
+    height: 100%; 
+    display: block; 
+    border: none;
+  }
+  .screen-label {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-family: 'Special Elite', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+  }
 
-  /* FOOTER (same as drive-in) */
+  /* FOOTER */
   footer {
     border-top: 1px solid rgba(201,168,76,0.12);
     padding: 2rem;
@@ -143,4 +158,30 @@
     <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
     <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
     <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
-    <div class="bulb"></div><div class="bulb"></div><div class="
+    <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+  </div>
+</div>
+
+<!-- SCREEN — COMIC READER -->
+<div class="screen-wrapper">
+  <div class="screen-frame">
+    <iframe id="main-player"
+      src="https://archive.org/embed/funnies_202604"
+      style="width: 100%; height: 100%; display: block; border: none;"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="screen-label">
+    Now Reading from the Archive • Beverly Hillbillies #1 and more • Use arrow keys or the built-in controls
+  </div>
+</div>
+
+<footer>
+  <div class="footer-tag">The Funny Papers · SL Tonight · Public Domain Comics</div>
+  <div class="footer-tag" style="font-size:0.5rem;opacity:0.4;margin-top:0.5rem;">
+    <a href="index.html" style="color:inherit;text-decoration:none;">www.sltonight.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
