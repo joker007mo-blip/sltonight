@@ -553,7 +553,7 @@
   <div class="show-card reveal">
   <div class="show-number">Dial Tones × Exceptionull Games</div>
   <div class="show-name">Karen Knockout</div>
-  <div class="show-desc" style="margin-bottom:1rem;">The Dial Tones deliver a chiptune rock hip-hop boxing anthem for Knockout 2: Wrath of the Karen — now fully released on Steam & Android. New promo anthem “Knockout 2” is the spiritual successor.</div>
+  <div class="show-desc" style="margin-bottom:1rem;">The Dial Tones deliver a chiptune rock hip-hop boxing anthem for Knockout 2: Wrath of the Karen — now fully released on Steam & Android. New promo anthem "Knockout 2" is the spiritual successor.</div>
   <a href="knockout.html" class="btn" style="font-size:0.62rem;text-decoration:none;">View Page</a>
 </div>
 </div>
@@ -603,18 +603,21 @@
     </div>
   </div>
 
+  <!-- ═══ WITCHES CENTER & CAFÉ — UPDATED CARD ═══ -->
   <div class="show-card reveal" style="padding:0;overflow:hidden;">
     <img src="witchescentercafe.png" alt="Witches Center and Cafe" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
     <div style="padding:1.25rem;">
-      <div class="show-number">Second Life Location</div>
+      <div class="show-number">Second Life Location · Online Sanctuary</div>
       <div class="show-name">Witches Center & Café</div>
-      <div class="show-desc" style="margin-bottom:1rem;">Tucked beside an old graveyard where the veil feels thin. Run by volunteer witches. Broomstick parking available.</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Tucked beside an old graveyard where the veil feels thin. Run by volunteer witches. Full online sanctuary — grimoire, live sky observatory, community tools, and broomstick parking.</div>
       <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
         <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+        <a href="https://thewitchescenterandcafe.netlify.app/" class="btn" target="_blank" style="font-size:0.62rem;">🌐 Visit the Sanctuary</a>
         <button onclick="document.getElementById('cosmic-modal').style.display='flex'" class="btn" style="font-size:0.62rem;cursor:pointer;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);">✦ Cosmic Whispers</button>
       </div>
     </div>
   </div>
+  <!-- ═══ END WITCHES CENTER CARD ═══ -->
 
   <div class="show-card reveal" style="padding:0;overflow:hidden;">
     <img src="Porcelain___Poison.jpg" alt="Porcelain and Poison" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
@@ -768,7 +771,7 @@
       <div style="padding:1rem 1.25rem;">
         <div class="show-number">SL Tonight Music + PD Cartoon</div>
         <div class="show-name" style="font-size:1rem;">Close Our Eyes</div>
-        <div class="show-desc">Original song paired with the 1935 public domain cartoon “The Sunshine Makers”. Custom artwork and nostalgic vibes.</div>
+        <div class="show-desc">Original song paired with the 1935 public domain cartoon "The Sunshine Makers". Custom artwork and nostalgic vibes.</div>
       </div>
     </div>
 
@@ -804,7 +807,7 @@
       <div style="padding:1rem 1.25rem;">
         <div class="show-number">SL Tonight Groovie</div>
         <div class="show-name" style="font-size:1rem;">The Riff Saves Me</div>
-        <div class="show-desc">Upbeat 90s-style blues rock with a monster harmonica hook, set to the perfect vintage cartoon energy of “Tom Turkey and His Harmonica Humdingers.”</div>
+        <div class="show-desc">Upbeat 90s-style blues rock with a monster harmonica hook, set to the perfect vintage cartoon energy of "Tom Turkey and His Harmonica Humdingers."</div>
       </div>
     </div>
 
@@ -847,7 +850,7 @@
   <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-top:0.5rem;">Public Domain · One Strip Per Day · Est. 1904</div>
 </div>
 
-<!-- TWO DAILY STRIPS SIDE BY SIDE — unchanged -->
+<!-- TWO DAILY STRIPS SIDE BY SIDE -->
 <div style="max-width:1100px;margin:0 auto;padding:3rem 2rem 0;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="archive-grid">
 
   <!-- RAREBIT FIEND -->
@@ -1003,7 +1006,6 @@
   function boobShow() {
     const f = boobFiles[boobIndex];
     document.getElementById('boob-img').src = 'boob/' + f;
-    // Parse label from filename
     const base = f.replace('BoobMcnutt-','').replace('BoobMcNutt-','').replace('-F.jpg','').replace('.jpg','');
     document.getElementById('boob-caption').textContent = 'Boob McNutt · Rube Goldberg · ' + base;
     document.getElementById('boob-counter').textContent = (boobIndex + 1) + ' of ' + boobFiles.length;
@@ -1018,28 +1020,35 @@
   boobShow();
 </script>
 
-<!-- COSMIC WHISPERS MODAL -->
+<!-- ═══════════════════════════════════════════════════════════════
+     COSMIC WHISPERS MODAL — updated to cosmicwisperslight.netlify.app
+     ═══════════════════════════════════════════════════════════════ -->
 <div id="cosmic-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;align-items:center;justify-content:center;padding:2rem;">
   <div style="background:#0d0a14;border:1px solid #6b3fa0;max-width:560px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 0 40px rgba(107,63,160,0.3);">
     <button onclick="document.getElementById('cosmic-modal').style.display='none'" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:#9b6dd4;font-size:1.5rem;cursor:pointer;font-family:'Special Elite',monospace;">✕</button>
     <div style="text-align:center;margin-bottom:2rem;">
       <div style="font-size:1.8rem;margin-bottom:0.5rem;">✦ ☽ ✦</div>
       <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;font-weight:700;color:#c8a0e8;font-style:italic;text-shadow:0 0 20px rgba(200,160,232,0.4);">Cosmic Whispers</div>
-      <div style="font-family:'Special Elite',monospace;font-size:0.62rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-top:0.4rem;">Witches Center & Café · Magical HUD</div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.62rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-top:0.4rem;">Witches Center & Café · Live Sky HUD</div>
     </div>
     <div style="border:1px solid rgba(107,63,160,0.4);overflow:hidden;margin-bottom:1.5rem;background:#0a0812;">
-      <iframe src="https://wccastrologyapp.netlify.app/" style="width:100%;height:380px;border:none;display:block;" title="Cosmic Whispers Astrology HUD" loading="lazy"></iframe>
+      <!-- UPDATED: cosmicwisperslight.netlify.app -->
+      <iframe src="https://cosmicwisperslight.netlify.app/" style="width:100%;height:380px;border:none;display:block;" title="Cosmic Whispers Live Sky HUD" loading="lazy"></iframe>
     </div>
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:1rem;line-height:1.8;color:rgba(200,160,232,0.7);text-align:center;margin-bottom:1.5rem;font-style:italic;">
       Real-time planetary positions · Moon phases · Retrograde tracker<br>
-      Tarot · Runes · Spells · Sacred journal
+      Transit forecast · Spell windows · Daily cosmic forecast
     </div>
     <div style="border-top:1px solid rgba(107,63,160,0.3);padding-top:1.25rem;text-align:center;">
-      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-bottom:0.75rem;">Celestial Reference</div>
-      <a href="https://celestiacore.netlify.app/" target="_blank" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;color:#c8a0e8;text-decoration:none;border:1px solid rgba(107,63,160,0.4);padding:0.5rem 1.5rem;display:inline-block;transition:all 0.2s;">✦ Open CelestiaCore ✦</a>
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-bottom:0.75rem;">Celestial Reference · 13-Sign Research</div>
+      <!-- UPDATED: celestiacoreupdate.netlify.app -->
+      <a href="https://celestiacoreupdate.netlify.app/" target="_blank" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;color:#c8a0e8;text-decoration:none;border:1px solid rgba(107,63,160,0.4);padding:0.5rem 1.5rem;display:inline-block;transition:all 0.2s;margin-bottom:0.75rem;">✦ Open CelestiaCore ✦</a>
+      <br>
+      <!-- UPDATED: full WCC site link -->
+      <a href="https://thewitchescenterandcafe.netlify.app/" target="_blank" style="font-family:'Playfair Display',Georgia,serif;font-size:0.9rem;color:#9b6dd4;text-decoration:none;border:1px solid rgba(107,63,160,0.3);padding:0.4rem 1.2rem;display:inline-block;transition:all 0.2s;">🌐 Enter the Full Sanctuary</a>
     </div>
     <div style="text-align:center;margin-top:1.25rem;">
-      <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" target="_blank" style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b3fa0;text-decoration:none;">Teleport to Witches Center & Café ↗</a>
+      <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" target="_blank" style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b3fa0;text-decoration:none;">Teleport to Witches Center & Café in Second Life ↗</a>
     </div>
   </div>
 </div>
