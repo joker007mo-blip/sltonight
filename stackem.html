@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Tonight Presents — Stack 'Em or Die</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Special+Elite&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2f;
+    --cream: #f0e6c8;
+    --dark: #0a0804;
+    --dark-mid: #13100a;
+    --dark-warm: #1a1410;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Crimson Text', Georgia, serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+  .back {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    text-decoration: none;
+  }
+  .back:hover { color: var(--gold); }
+  .label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin: 1.5rem 0 0.4rem;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--gold);
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  .sub {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.25rem;
+  }
+  p.body { font-size: 1.1rem; line-height: 1.85; color: rgba(240,230,200,0.75); max-width: 720px; }
+  .cabinet {
+    margin: 1.75rem 0;
+    border: 1px solid rgba(201,168,76,0.25);
+    background: #111;
+    min-height: 70vh;
+  }
+  .cabinet iframe { width: 100%; height: 78vh; border: 0; display: block; background: #111; }
+  .note {
+    font-size: 0.9rem;
+    color: rgba(240,230,200,0.45);
+    margin: 0.75rem 0 1.5rem;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 2rem; }
+  .btn {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    background: rgba(10,8,4,0.6);
+  }
+  .btn.primary { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1.4rem;
+  }
+  .card h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .card p { font-size: 0.95rem; line-height: 1.65; color: rgba(240,230,200,0.5); }
+  footer { border-top: 1px solid rgba(201,168,76,0.12); padding: 2rem; text-align: center; color: rgba(240,230,200,0.25); font-size: 0.8rem; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="index.html">← Back to SL Tonight</a>
+    <div class="label">SL Tonight Presents · Unbound Grounds Arcade</div>
+    <h1>Stack 'Em or Die</h1>
+    <p class="sub">The high-rise ironworker · BurgerTime bones · original steel skin</p>
+    <p class="body">Walk the beams. Drop the iron. Stun the gremlins with a welding spark. City pigeons and live steam want the job more than you do. Clock in, or get carried off the steel.</p>
+
+    <div class="row">
+      <!-- After you publish the Grok app, paste that live URL into the iframe src below. -->
+      <a class="btn primary" href="#play">Play in browser</a>
+      <!-- After Internet Archive finishes the item, put the item URL here. -->
+      <a class="btn" href="STACKEM_ARCHIVE_URL" target="_blank">Download / Archive.org</a>
+      <a class="btn" href="index.html">The Show</a>
+    </div>
+
+    <div class="cabinet" id="play">
+      <!--
+        OPTION A (easiest play): publish the game from Grok, then replace PLAY_URL
+        with that https://….grok.me (or whatever host) address.
+        OPTION B: if you later export a static folder, point this at stackem/index.html
+      -->
+      <iframe src="PLAY_URL" title="Stack 'Em or Die" allow="autoplay; fullscreen"></iframe>
+    </div>
+    <p class="note">Arrows or WASD move · Space is the welding spark · phone gets a D-pad. If the cabinet is blank, the play URL is still the placeholder — use the Archive download until the live host is pasted in.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>How to run the zip</h2>
+        <p>The zip is the project, not a ROM. Internet Archive is for keeping and sharing the file. To play it in this page you need the <em>live preview / published app URL</em> from Grok, pasted into the iframe above. Do not expect double-clicking the zip to open an arcade cabinet.</p>
+      </div>
+      <div class="card">
+        <h2>Internet Archive upload</h2>
+        <p>archive.org → Upload → drop the zip. Collection: <strong>Software / Community Software</strong>. Title: <em>SL Tonight Presents Stack 'Em or Die</em>. Creator: Felix Lubezki / SL Tonight. Tags: arcade, burgerspace, construction, second life. License: your call (CC-BY-NC is fine if you want people to copy the zip).</p>
+      </div>
+    </div>
+  </div>
+  <footer>SL Tonight / Felix Lubezki · inspired by the BurgerTime / BurgerSpace job, original ironworker skin</footer>
+</body>
+</html>
