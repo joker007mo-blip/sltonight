@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SL Tonight Presents — I-Beam Stack 'Em</title>
+<meta name="description" content="Slide matching I-beams. Skyscraper is a milestone — keep stacking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#12100e; --elev:#1a1714; --cell:#0e0c0a; --fg:#ece6dc; --cream:#e8dcc8;
+    --muted:#9a9184; --subtle:#6f675c; --border:#3a342c;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { height:100%; background:var(--bg); color:var(--fg); font-family:"IBM Plex Sans",system-ui,sans-serif; }
+  button { font:inherit; cursor:pointer; }
+  button:disabled { opacity:.4; cursor:default; }
+  .shell { min-height:100%; display:flex; flex-direction:column; background:radial-gradient(1200px 420px at 50% -10%, #2a241c 0%, transparent 60%), var(--bg); }
+  header { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:16px 16px 8px; }
+  .kicker { font-family:"Bebas Neue",Impact,sans-serif; letter-spacing:.38em; font-size:11px; color:var(--muted); }
+  h1 { font-family:"Bebas Neue",Impact,sans-serif; font-size:clamp(1.6rem,5vw,2.4rem); letter-spacing:.06em; color:var(--cream); line-height:1; }
+  .tag { margin-top:6px; font-size:14px; color:var(--muted); max-width:28ch; }
+  .stats { display:flex; gap:8px; }
+  .stat { min-width:4.5rem; border:1px solid var(--border); background:var(--elev); border-radius:12px; padding:8px 12px; text-align:right; }
+  .stat b { display:block; font-family:"Bebas Neue",sans-serif; font-size:10px; letter-spacing:.22em; color:var(--subtle); font-weight:400; }
+  .stat span { font-family:"IBM Plex Mono",monospace; font-size:18px; color:var(--cream); }
+  .stat i { display:block; font-style:normal; font-family:"Bebas Neue",sans-serif; font-size:10px; letter-spacing:.12em; color:var(--muted); margin-top:4px; }
+  main { width:100%; max-width:480px; margin:0 auto; padding:0 16px 24px; flex:1; display:flex; flex-direction:column; }
+  .grid { position:relative; aspect-ratio:1; width:100%; max-width:420px; margin:8px auto 0; border:1px solid var(--border); border-radius:20px; padding:2.4%; background:#141210; touch-action:none; user-select:none; }
+  .cell { position:absolute; width:25%; height:25%; padding:3%; }
+  .cell i { display:block; height:100%; border-radius:6px; background:var(--cell); }
+  .tile { position:absolute; width:25%; height:25%; padding:3%; transition:transform .15s cubic-bezier(.22,1,.36,1); }
+  .face { height:100%; border-radius:6px; border:1px solid; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .face b { font-family:"Bebas Neue",sans-serif; letter-spacing:.12em; font-size:clamp(.72rem,3.2vw,.95rem); font-weight:400; }
+  .face small { font-family:"IBM Plex Mono",monospace; font-size:clamp(.62rem,2.4vw,.78rem); opacity:.8; }
+  .overlay { position:absolute; inset:0; z-index:5; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; border-radius:18px; background:rgba(18,16,14,.92); }
+  .overlay h2 { font-family:"Bebas Neue",sans-serif; font-size:32px; letter-spacing:.04em; color:var(--cream); }
+  .overlay p { margin:12px auto 0; max-width:30ch; font-size:14px; color:var(--muted); line-height:1.4; }
+  .btn { min-height:44px; padding:0 20px; margin-top:16px; border-radius:8px; font-family:"Bebas Neue",sans-serif; letter-spacing:.16em; font-size:17px; border:1px solid var(--cream); background:var(--cream); color:var(--bg); }
+  .btn.ghost { background:transparent; color:var(--cream); border-color:var(--border); }
+  .hint { text-align:center; margin:12px 0 8px; font-size:12px; color:var(--subtle); }
+  .pad { display:none; width:168px; margin:0 auto; grid-template-columns:repeat(3,1fr); gap:6px; }
+  .pad button { height:44px; width:44px; border:1px solid var(--border); background:var(--elev); color:var(--fg); border-radius:8px; }
+  .actions { display:flex; justify-content:center; gap:8px; margin-top:12px; }
+  .actions .btn { margin-top:0; font-size:14px; padding:0 16px; }
+  .legend { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:16px; }
+  .legend span { display:flex; flex-direction:column; align-items:center; gap:4px; font-family:"Bebas Neue",sans-serif; font-size:10px; letter-spacing:.12em; color:var(--subtle); }
+  .chip { height:32px; width:100%; border-radius:4px; border:1px solid; }
+  .foot { margin-top:auto; padding-top:20px; text-align:center; font-size:11px; letter-spacing:.14em; color:var(--subtle); }
+  .toast { position:absolute; left:16px; right:16px; top:16px; z-index:6; text-align:center; padding:8px 12px; border:1px solid var(--border); background:var(--elev); border-radius:8px; font-family:"Bebas Neue",sans-serif; letter-spacing:.14em; color:var(--cream); }
+  [data-t="t2"]{background:#b7bec2;border-color:#8d959a;color:#1c2226}
+  [data-t="t4"]{background:#9aa3a8;border-color:#7b8388;color:#161c20}
+  [data-t="t8"]{background:#cfc3ad;border-color:#a89880;color:#2a241c}
+  [data-t="t16"]{background:#c08a5a;border-color:#9a6840;color:#2a1a10}
+  [data-t="t32"]{background:#a86b42;border-color:#855230;color:#1f140c}
+  [data-t="t64"]{background:#8a5338;border-color:#6a3e2a;color:#f3e7d8}
+  [data-t="t128"]{background:#5d6772;border-color:#434c56;color:#f1eee8}
+  [data-t="t256"]{background:#465260;border-color:#323c48;color:#f1eee8}
+  [data-t="t512"]{background:#354352;border-color:#24303c;color:#f4efe6}
+  [data-t="t1024"]{background:#283848;border-color:#1b2834;color:#f4efe6}
+  [data-t="t2048"]{background:#1d2c3a;border-color:#e8dcc8;color:#e8dcc8}
+  [data-t="t4096"],[data-t="t8192"]{background:#141c24;border-color:#c8c2b4;color:#e8dcc8}
+  @media (max-width:800px){ .pad{display:grid} }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div>
+      <div class="kicker">SL TONIGHT PRESENTS</div>
+      <h1>I-BEAM STACK 'EM</h1>
+      <p class="tag">Girders up. Skyscraper is a milestone — then Landmark, then Spire.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>SCORE</b><span id="score">0</span></div>
+      <div class="stat"><b>BEST</b><span id="best">0</span></div>
+      <div class="stat"><b>PEAK</b><span id="peak">0</span><i id="peakName">—</i></div>
+    </div>
+  </header>
+  <main>
+    <div class="grid" id="board"></div>
+    <p class="hint">Arrows or WASD · swipe the deck · walk matching stacks together</p>
+    <div class="pad">
+      <span></span><button data-d="up">↑</button><span></span>
+      <button data-d="left">←</button><span></span><button data-d="right">→</button>
+      <span></span><button data-d="down">↓</button><span></span>
+    </div>
+    <div class="actions">
+      <button class="btn ghost" id="undo" disabled>Take back</button>
+      <button class="btn ghost" id="newShift">New shift</button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <p class="foot">More from SL Tonight · sltonight.com · YT / TikTok</p>
+  </main>
+</div>
+<script>
+const SIZE=4, WIN=2048, KEY="ibeam-stack-em-v1";
+const TIERS={
+  2:["Girder","I-BEAM","t2"],4:["Twin Beam","TWIN","t4"],8:["Frame","FRAME","t8"],
+  16:["Deck","DECK","t16"],32:["Scaffold","SCAF","t32"],64:["Wing","WING","t64"],
+  128:["Low-Rise","LOW","t128"],256:["Mid-Rise","MID","t256"],512:["Tower","TOWER","t512"],
+  1024:["High-Rise","HIGH","t1024"],2048:["Skyscraper","SKY","t2048"],
+  4096:["Landmark","LAND","t4096"],8192:["Spire","SPIRE","t8192"]
+};
+function tier(v){return TIERS[v]||["Colossus",String(v),"t8192"]}
+let state, best=0, undo=null, phase="attract", cool=0, ptr=null, nextId=1;
+
+function empty(){return {tiles:[],score:0,won:false,over:false,nextId:1}}
+function cells(tiles){
+  const t=new Set(tiles.map(x=>x.r+","+x.c)), o=[];
+  for(let r=0;r<SIZE;r++) for(let c=0;c<SIZE;c++) if(!t.has(r+","+c)) o.push({r,c});
+  return o;
+}
+function spawn(s){
+  const e=cells(s.tiles); if(!e.length) return s;
+  const p=e[Math.floor(Math.random()*e.length)];
+  const tile={id:s.nextId,v:Math.random()<0.9?2:4,r:p.r,c:p.c,fresh:true,merged:false};
+  return {...s,nextId:s.nextId+1,tiles:[...s.tiles.map(t=>({...t,fresh:false,merged:false})),tile]};
+}
+function newGame(){ return spawn(spawn(empty())); }
+function boardOf(tiles){
+  const b=Array.from({length:SIZE},()=>Array(SIZE).fill(null));
+  tiles.forEach(t=>b[t.r][t.c]=t); return b;
+}
+function canMove(tiles){
+  if(cells(tiles).length) return true;
+  const b=boardOf(tiles);
+  for(let r=0;r<SIZE;r++) for(let c=0;c<SIZE;c++){
+    const v=b[r][c]&&b[r][c].v; if(!v) continue;
+    if(c+1<SIZE && b[r][c+1]&&b[r][c+1].v===v) return true;
+    if(r+1<SIZE && b[r+1][c]&&b[r+1][c].v===v) return true;
+  }
+  return false;
+}
+function lineCoords(dir,i){
+  const o=[];
+  for(let n=0;n<SIZE;n++){
+    if(dir==="left") o.push({r:i,c:n});
+    else if(dir==="right") o.push({r:i,c:SIZE-1-n});
+    else if(dir==="up") o.push({r:n,c:i});
+    else o.push({r:SIZE-1-n,c:i});
+  }
+  return o;
+}
+function slideLine(line, nid){
+  const compact=line.filter(Boolean), out=[]; let score=0, i=0;
+  while(i<compact.length){
+    const a=compact[i], b=compact[i+1];
+    if(b && a.v===b.v){
+      const m={id:nid.n++, v:a.v*2, r:a.r, c:a.c, fresh:false, merged:true};
+      out.push(m); score+=m.v; i+=2;
+    } else { out.push({...a,fresh:false,merged:false}); i++; }
+  }
+  while(out.length<SIZE) out.push(null);
+  const moved=out.some((t,idx)=>{
+    const p=line[idx];
+    if(!t&&!p) return false;
+    if(!t||!p) return true;
+    return t.id!==p.id || t.v!==p.v;
+  });
+  return {out,score,moved};
+}
+function move(s,dir){
+  if(s.over) return {s, moved:false};
+  const board=boardOf(s.tiles), nid={n:s.nextId};
+  let gain=0, moved=false;
+  const next=Array.from({length:SIZE},()=>Array(SIZE).fill(null));
+  for(let i=0;i<SIZE;i++){
+    const coords=lineCoords(dir,i);
+    const line=coords.map(({r,c})=>board[r][c]);
+    const slid=slideLine(line,nid);
+    if(slid.moved) moved=true;
+    gain+=slid.score;
+    coords.forEach(({r,c},idx)=>{
+      const t=slid.out[idx];
+      if(t) next[r][c]={...t,r,c};
+    });
+  }
+  if(!moved) return {s, moved:false};
+  const tiles=[];
+  for(let r=0;r<SIZE;r++) for(let c=0;c<SIZE;c++) if(next[r][c]) tiles.push(next[r][c]);
+  let n={...s, tiles, score:s.score+gain, nextId:nid.n, won:s.won||tiles.some(t=>t.v>=WIN)};
+  n=spawn(n); n.over=!canMove(n.tiles);
+  return {s:n, moved:true, justWon: n.won && !s.won};
+}
+function load(){
+  try{
+    const raw=JSON.parse(localStorage.getItem(KEY)||"{}");
+    best=raw.best||0;
+    if(raw.game && !raw.game.over){ state=raw.game; phase="attract"; }
+    else state=empty();
+  }catch{ state=empty(); }
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify({best, game:state})); }catch{}
+}
+function render(){
+  document.getElementById("score").textContent=state.score;
+  document.getElementById("best").textContent=best;
+  const peak=state.tiles.reduce((m,t)=>Math.max(m,t.v),0);
+  document.getElementById("peak").textContent=peak||0;
+  document.getElementById("peakName").textContent=peak?tier(peak)[0]:"—";
+  document.getElementById("undo").disabled=!undo || phase!=="play" || state.over;
+  const board=document.getElementById("board");
+  board.innerHTML="";
+  for(let i=0;i<16;i++){
+    const d=document.createElement("div");
+    d.className="cell";
+    d.style.left=(i%4)*25+"%"; d.style.top=Math.floor(i/4)*25+"%";
+    d.innerHTML="<i></i>";
+    board.appendChild(d);
+  }
+  state.tiles.forEach(t=>{
+    const el=document.createElement("div");
+    el.className="tile";
+    el.style.transform=`translate(${t.c*100}%, ${t.r*100}%)`;
+    const [name,short,tone]=tier(t.v);
+    el.innerHTML=`<div class="face" data-t="${tone}"><b>${short}</b><small>${t.v}</small></div>`;
+    board.appendChild(el);
+  });
+  if(phase==="attract"){
+    const o=document.createElement("div"); o.className="overlay";
+    o.innerHTML=`<div class="kicker">HIGH-RISE PUZZLE</div>
+      <h2>CLOCK IN</h2>
+      <p>Slide matching stacks. Two girders become a frame, then a tower, then a skyscraper. The shift does not end there — keep going until the deck locks.</p>
+      <button class="btn" id="clock">Clock in</button>
+      ${undoResume()}`;
+    board.appendChild(o);
+    document.getElementById("clock").onclick=clockIn;
+    const r=document.getElementById("resume"); if(r) r.onclick=()=>{phase="play"; render();};
+  }
+  if(state.over && phase==="play"){
+    const o=document.createElement("div"); o.className="overlay";
+    o.innerHTML=`<div class="kicker">NO MORE BEAMS</div><h2>SHIFT OVER</h2>
+      <p style="font-family:IBM Plex Mono,monospace;font-size:18px;color:var(--cream)">${state.score}</p>
+      <button class="btn" id="again">New shift</button>`;
+    board.appendChild(o);
+    document.getElementById("again").onclick=clockIn;
+  }
+}
+function undoResume(){
+  return (state.tiles&&state.tiles.length && !state.over)
+    ? `<button class="btn ghost" id="resume">Resume shift</button>` : "";
+}
+function clockIn(){
+  state=newGame(); undo=null; phase="play"; save(); render();
+}
+function apply(dir){
+  if(phase!=="play" || state.over) return;
+  const now=performance.now(); if(now<cool) return;
+  const {s,moved,justWon}=move(state,dir);
+  if(!moved) return;
+  cool=now+110; undo=state; state=s;
+  if(state.score>best) best=state.score;
+  save(); render();
+  if(justWon){
+    const t=document.createElement("div"); t.className="toast"; t.textContent="Skyscraper up. Keep stacking.";
+    document.getElementById("board").appendChild(t);
+    setTimeout(()=>t.remove(),2800);
+  }
+}
+load();
+const legend=document.getElementById("legend");
+Object.keys(TIERS).sort((a,b)=>a-b).forEach(v=>{
+  const [name,,tone]=TIERS[v];
+  const s=document.createElement("span");
+  s.innerHTML=`<div class="chip" data-t="${tone}"></div>${name}`;
+  legend.appendChild(s);
+});
+render();
+document.getElementById("newShift").onclick=clockIn;
+document.getElementById("undo").onclick=()=>{ if(!undo) return; state=undo; undo=null; save(); render(); };
+document.querySelectorAll(".pad [data-d]").forEach(b=>b.onclick=()=>apply(b.dataset.d));
+window.addEventListener("keydown",e=>{
+  const map={ArrowLeft:"left",ArrowRight:"right",ArrowUp:"up",ArrowDown:"down",KeyA:"left",KeyD:"right",KeyW:"up",KeyS:"down"};
+  const d=map[e.code]; if(!d) return; e.preventDefault(); apply(d);
+});
+const board=document.getElementById("board");
+board.addEventListener("pointerdown",e=>{
+  if(phase!=="play"||state.over) return;
+  board.setPointerCapture(e.pointerId);
+  ptr={x:e.clientX,y:e.clientY,id:e.pointerId};
+});
+board.addEventListener("pointerup",e=>{
+  if(!ptr||ptr.id!==e.pointerId) return;
+  const dx=e.clientX-ptr.x, dy=e.clientY-ptr.y; ptr=null;
+  if(Math.max(Math.abs(dx),Math.abs(dy))<28) return;
+  apply(Math.abs(dx)>Math.abs(dy)?(dx>0?"right":"left"):(dy>0?"down":"up"));
+});
+board.addEventListener("pointercancel",()=>ptr=null);
+document.addEventListener("visibilitychange",()=>{ if(document.hidden) save(); });
+</script>
+</body>
+</html>
