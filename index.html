@@ -2,10 +2,1139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SL Tonight — We Are Where The Nightmares Go</title>
-<meta http-equiv="refresh" content="0; url=https://github.com/joker007mo-blip/sltonight">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Special+Elite&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2f;
+    --cream: #f0e6c8;
+    --dark: #0a0804;
+    --dark-mid: #13100a;
+    --dark-warm: #1a1410;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: var(--dark);
+    color: var(--cream);
+    font-family: 'Crimson Text', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('SL_Tonight_We_Are_Where_The_Nightmares_Go.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) saturate(0.6);
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,8,4,0.2) 0%, rgba(10,8,4,0.05) 40%, rgba(10,8,4,0.75) 80%, rgba(10,8,4,1) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-logo {
+    width: min(260px, 55vw);
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 40px rgba(201,168,76,0.5));
+    animation: glow 4s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 25px rgba(201,168,76,0.3)); }
+    50% { filter: drop-shadow(0 0 55px rgba(201,168,76,0.65)); }
+  }
+  .channel-id {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .tagline {
+    font-family: 'Special Elite', monospace;
+    font-size: clamp(0.7rem, 1.8vw, 1rem);
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .host-credit {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(240,230,200,0.4);
+    margin-bottom: 3rem;
+  }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    background: rgba(10,8,4,0.6);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+  }
+  .btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn.primary { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn.primary:hover { background: var(--cream); border-color: var(--cream); }
+
+  /* BAND */
+  .band {
+    background: var(--dark-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    padding: 1.2rem 2rem;
+    text-align: center;
+  }
+  .band-text {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  /* ABOUT */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    .about { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .host-section { grid-template-columns: 1fr; text-align: center; }
+    .host-img { margin: 0 auto; }
+    .archive-grid { grid-template-columns: 1fr !important; }
+  }
+  .about-img-wrap { position: relative; }
+  .about-img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--gold-dim);
+  }
+  .about-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid rgba(201,168,76,0.2);
+    pointer-events: none;
+  }
+
+  .section-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+  }
+  .section-body {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(240,230,200,0.75);
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+  .divider-sym { color: var(--gold-dim); }
+
+  /* FEATURE STRIP */
+  .feature-strip {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  .feature-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: brightness(0.35) saturate(0.7);
+  }
+  .feature-strip-text {
+    position: absolute; inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .feature-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.1rem, 3vw, 1.9rem);
+    font-style: italic;
+    color: var(--cream);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+    max-width: 700px;
+    line-height: 1.4;
+  }
+  .feature-attr {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-top: 1rem;
+  }
+
+  /* SHOWS */
+  .shows-header { padding: 5rem 2rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .shows-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.25rem;
+    padding: 0 2rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .show-card {
+    background: var(--dark-warm);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1.75rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .show-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold-dim);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease;
+  }
+  .show-card:hover { border-color: rgba(201,168,76,0.35); background: #1d1912; }
+  .show-card:hover::before { transform: scaleY(1); }
+  .show-number {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .show-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+  .show-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(240,230,200,0.48); }
+
+  /* HOST */
+  .host-section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .host-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    border: 2px solid var(--gold-dim);
+    filter: sepia(0.15) contrast(1.05);
+    box-shadow: 0 0 40px rgba(201,168,76,0.12);
+  }
+
+  /* LINKS */
+  .find-us { text-align: center; padding: 4rem 2rem 2rem; max-width: 700px; margin: 0 auto; }
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem 2rem 5rem;
+  }
+  .link-block {
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    transition: all 0.25s ease;
+    background: var(--dark-warm);
+    min-width: 150px;
+  }
+  .link-block:hover { border-color: var(--gold); background: #1d1912; }
+  .link-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+  .link-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .link-name { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; color: var(--cream); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--dark-mid);
+  }
+  .footer-logo-img { width: 100px; margin: 0 auto 1rem; display: block; opacity: 0.7; }
+  .footer-tag {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .footer-fine { font-size: 0.78rem; color: rgba(240,230,200,0.18); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
 </head>
 <body>
-<p>Homepage restore in progress. Play Spare's Run at <a href="sparesrun.html">sparesrun.html</a>.</p>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div style="width:min(260px,55vw);margin:0 auto 2rem;position:relative;">
+      <video id="hero-logo-video" autoplay muted playsinline
+        style="width:100%;display:block;filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));animation:glow 4s ease-in-out infinite;"
+        poster="SL_Tonight_We_Are_Where_The_Nightmares_Go_alt.jpeg">
+        <source src="slmoon.mp4" type="video/mp4">
+        <img src="SL_Tonight_We_Are_Where_The_Nightmares_Go_alt.jpeg" alt="SL Tonight" style="width:100%;display:block;">
+      </video>
+    </div>
+    <script>
+      const heroVid = document.getElementById('hero-logo-video');
+      const sources = ['slmoon.mp4', 'slmoons.mp4'];
+      let current = 0;
+      if (heroVid) {
+        heroVid.addEventListener('ended', () => {
+          current = (current + 1) % sources.length;
+          heroVid.src = sources[current];
+          heroVid.play();
+        });
+      }
+    </script>
+    <div class="channel-id">Broadcasting from Second Life &nbsp;·&nbsp; Felix Lubezki &nbsp;·&nbsp; Est. 2024</div>
+    <div class="tagline">We Are Where The Nightmares Go</div>
+    <div class="host-credit">Presented by Felix Lubezki</div>
+    <div class="hero-links">
+      <a href="https://youtube.com/@jamesriley007" class="btn primary" target="_blank">Watch on YouTube</a>
+      <a href="https://marketplace.secondlife.com/stores/255106" class="btn" target="_blank">SL Marketplace</a>
+      <a href="https://discord.gg/DSBcwS7zXE" class="btn" target="_blank">Discord</a>
+    </div>
+  </div>
+</div>
+
+<div class="band">
+  <div class="band-text">Horror &nbsp;·&nbsp; Music &nbsp;·&nbsp; Comics &nbsp;·&nbsp; Stories &nbsp;·&nbsp; Second Life &nbsp;·&nbsp; The Dial Tones &nbsp;·&nbsp; SL Toons</div>
+</div>
+<!-- THE VAULT COLLECTION — SALES CARD -->
+<div style="max-width:1100px;margin:3rem auto 0;padding:0 2rem;">
+  <div class="show-card reveal" style="padding:2rem;border-color:rgba(201,168,76,0.25);background:#1a1410;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div class="show-number" style="margin-bottom:0.5rem;">SL Tonight · SL Toons · Now Available</div>
+      <div class="show-name" style="font-size:1.6rem;color:var(--gold);margin-bottom:0.5rem;">The Vault Collection</div>
+      <div class="show-desc" style="max-width:560px;margin:0 auto;color:rgba(240,230,200,0.6);">Three brand-new digital comic books. Clean PDFs. No watermarks. Instant download.</div>
+    </div>
+
+    <!-- Three books -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem;">
+
+      <!-- Book 1: Tales That Terrify -->
+      <div style="text-align:center;">
+        <img src="Cover.jpg" alt="Tales That Terrify: On Record"
+             style="width:100%;max-width:180px;border:2px solid var(--gold-dim);box-shadow:0 0 20px rgba(201,168,76,0.25);display:block;margin:0 auto 0.75rem;">
+        <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.3rem;">Horror</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:0.4rem;line-height:1.2;">Tales That Terrify:<br>On Record Vol. 1</div>
+        <div style="font-size:0.8rem;color:rgba(240,230,200,0.45);line-height:1.5;margin-bottom:0.5rem;">Ghost armies · Cursed rubies · Were-jackals · Phantom ships. 36 pages of restored 1950s horror.</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;color:var(--gold);font-size:1.1rem;font-weight:700;">$6</div>
+      </div>
+
+      <!-- Book 2: Tales from the Vault -->
+      <div style="text-align:center;">
+        <img src="0Cover.jpg" alt="Tales from the Vault"
+             style="width:100%;max-width:180px;border:2px solid var(--gold-dim);box-shadow:0 0 20px rgba(201,168,76,0.25);display:block;margin:0 auto 0.75rem;">
+        <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.3rem;">Horror</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:0.4rem;line-height:1.2;">Tales from<br>the Vault</div>
+        <div style="font-size:0.8rem;color:rgba(240,230,200,0.45);line-height:1.5;margin-bottom:0.5rem;">17 chilling two-page horror stories straight out of the Tomb of Terror. Pure old-school shockers.</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;color:var(--gold);font-size:1.1rem;font-weight:700;">$6</div>
+      </div>
+
+      <!-- Book 3: Papers from the Vault -->
+      <div style="text-align:center;">
+        <img src="0.jpg" alt="Papers from the Vault"
+             style="width:100%;max-width:180px;border:2px solid var(--gold-dim);box-shadow:0 0 20px rgba(201,168,76,0.25);display:block;margin:0 auto 0.75rem;">
+        <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.3rem;">Comedy · Gag Comics</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:0.4rem;line-height:1.2;">Papers from<br>the Vault</div>
+        <div style="font-size:0.8rem;color:rgba(240,230,200,0.45);line-height:1.5;margin-bottom:0.5rem;">Professor McScrewy · Lil' Arthur · Dinky Pup · Comic Crimes. Goofy vintage strips front to back.</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;color:var(--gold);font-size:1.1rem;font-weight:700;">Pay What You Want <span style="font-size:0.75rem;font-weight:400;color:rgba(240,230,200,0.4);">(min. $6)</span></div>
+      </div>
+
+    </div>
+
+    <!-- Single CTA -->
+    <div style="text-align:center;border-top:1px solid rgba(201,168,76,0.15);padding-top:1.5rem;">
+      <div class="show-desc" style="margin-bottom:1.25rem;color:rgba(240,230,200,0.5);">All three available now in the SL Tonight Ko-fi shop.</div>
+      <a href="https://ko-fi.com/s/5291d932b0" class="btn primary" target="_blank" style="font-size:0.72rem;">
+        ☕ Browse the Full Vault Collection on Ko-fi
+      </a>
+    </div>
+
+  </div>
+</div>
+<!-- END VAULT COLLECTION SALES CARD -->
+<!-- OVERLOOK DRIVE-IN CARD -->
+<div style="max-width:1100px;margin:3rem auto 0;padding:0 2rem;">
+  <div class="show-card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;padding:2rem;">
+    <div style="flex:1;min-width:200px;">
+      <div class="show-number">The Overlook Drive-In · Unbound Grounds</div>
+      <div class="show-name" style="font-size:1.4rem;">Now Showing</div>
+      <div class="show-desc" style="margin-bottom:1.25rem;">Classic films, serial nights, double features and guest requests. The drive-in experience — inside Second Life and on the web.</div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="sltonightdrivein.html" class="btn primary" style="font-size:0.68rem;text-decoration:none;">🍿 Enter the Drive-In</a>
+        <button onclick="document.getElementById('unbound-modal').style.display='flex'" class="btn" style="font-size:0.68rem;cursor:pointer;">April Schedule</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about reveal">
+  <div class="about-img-wrap">
+    <img src="sltonightcomic.jpg" alt="SL Tonight" class="about-img">
+  </div>
+  <div>
+    <div class="section-label">About the Show</div>
+    <h2 class="section-title">Stories from the Shadows</h2>
+    <p class="section-body">SL Tonight is a Second Life storytelling channel inspired by The Twilight Zone, Tales from the Crypt, and the grown-up version of Reading Rainbow nobody made until now.</p>
+    <br>
+    <p class="section-body">Your host Felix Lubezki presents horror readings, original music from The Dial Tones, retro comic readings, nature documentaries about digital cats, paranormal file reviews, fan fiction readings, and whatever else the night brings.</p>
+    <br>
+    <p class="section-body" style="font-style: italic; color: rgba(240,230,200,0.35);">"We are where the nightmares go."</p>
+  </div>
+</div>
+
+<div class="feature-strip reveal">
+  <img src="sltonightreadingtheme.png" alt="">
+  <div class="feature-strip-text">
+    <div class="feature-quote">"We dare you to read these eerie tales of supernatural horror."</div>
+    <div class="feature-attr">Tales That Terrify &nbsp;·&nbsp; On Record &nbsp;·&nbsp; Borrowed Worlds &nbsp;·&nbsp; Witches Tales</div>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="shows-header reveal">
+  <div class="section-label">What's On</div>
+  <h2 class="section-title">The Programming</h2>
+</div>
+
+<div class="shows-grid">
+  <div class="show-card reveal">
+    <div class="show-number">Show 01</div>
+    <div class="show-name">Tales That Terrify</div>
+    <div class="show-desc">Readings from Alfred Hitchcock's anthology collections. Horror stories presented with the care they deserve. Series 2 now airing.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 02</div>
+    <div class="show-name">On Record: Believe It Or Don't</div>
+    <div class="show-desc">Documented anomalies from Charles Fort's Book of the Damned. Things that fell from clear skies. The explanations. The geometry of it. It is on record.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 03</div>
+    <div class="show-name">The Dial Tones</div>
+    <div class="show-desc">Original music inspired by retro games, arcade culture, and the things nobody made songs about yet. The house band of SL Tonight.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 04</div>
+    <div class="show-name">SL Toons</div>
+    <div class="show-desc">Public domain cartoon readings, nature documentaries about digital cats, and the Midnight Series — classic animation scored with Dial Tones originals.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 05</div>
+    <div class="show-name">Atari Comics</div>
+    <div class="show-desc">Full readings of the Atari Force comic series. Felix reads them out loud in Second Life. Somehow that's a thing that exists now.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 06</div>
+    <div class="show-name">Borrowed Worlds</div>
+    <div class="show-desc">Fan fiction readings presented with care. Currently: Star Fox: Shards of the Past by InsurrectionAlpha. These are borrowed worlds. They deserved to be heard.</div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">Show 07</div>
+    <div class="show-name">Witches Tales & Friends</div>
+    <div class="show-desc">Full issue readings of public domain horror comics. Harvey Comics, EC Comics, and more. Ten cents worth of weird yarns of unseen terrors.</div>
+  </div>
+ <div class="show-card reveal">
+  <div class="show-number">Comics</div>
+  <div class="show-name">The Funny Papers Reader</div>
+  <div class="show-desc">Full comic issues read on the show — Beverly Hillbillies, Witches Tales, Atari Force and more. Vintage viewer, page-by-page, just like the drive-in.</div>
+  <a href="sltonightcomics.html" class="btn" style="font-size:0.62rem;text-decoration:none;">📖 Enter the Comic Vault</a>
+  </div>
+  <div class="show-card reveal">
+  <div class="show-number">Dial Tones × Exceptionull Games</div>
+  <div class="show-name">Karen Knockout</div>
+  <div class="show-desc" style="margin-bottom:1rem;">The Dial Tones deliver a chiptune rock hip-hop boxing anthem for Knockout 2: Wrath of the Karen — now fully released on Steam & Android. New promo anthem "Knockout 2" is the spiritual successor.</div>
+  <a href="knockout.html" class="btn" style="font-size:0.62rem;text-decoration:none;">View Page</a>
+</div>
+</div>
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="host-section reveal">
+  <img src="8466o3IQ_400x400.jpg" alt="Felix Lubezki" class="host-img">
+  <div>
+    <div class="section-label">Your Host</div>
+    <h2 class="section-title">Felix Lubezki</h2>
+    <p class="section-body">Just a guy with a chair, a library full of stories, and a Second Life avatar who somehow ended up running a late night variety show. Horror readings, original music, retro comics, digital cat documentaries. If it belongs somewhere after midnight, it belongs here.</p>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="shows-header reveal">
+  <div class="section-label">SL Tonight Arcade</div>
+  <h2 class="section-title">The Cabinets</h2>
+  <p class="section-body" style="max-width:600px;">Three cabinets. Two on the high steel. One after midnight.</p>
+</div>
+
+<div class="shows-grid">
+  <div class="show-card reveal">
+    <div class="show-number">SL Tonight Arcade</div>
+    <div class="show-name">Stack 'Em or Die</div>
+    <div class="show-desc" style="margin-bottom:1rem;">High-rise ironworker. Walk the beams. Drop the steel. Stun the gremlins. City pigeons and live steam included.</div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="stackem.html" class="btn primary" style="font-size:0.68rem;text-decoration:none;">Play the Cabinet</a>
+      <a href="https://archive.org/details/stack-em-or-die" class="btn" target="_blank" style="font-size:0.68rem;text-decoration:none;">Archive.org Zip</a>
+    </div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">SL Tonight Arcade</div>
+    <div class="show-name">I-Beam Stack 'Em</div>
+    <div class="show-desc" style="margin-bottom:1rem;">2048 on the job site. Slide matching I-beams from girder to skyscraper. Landmark and Spire after that. The shift ends when the deck locks.</div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="ibeam.html" class="btn primary" style="font-size:0.68rem;text-decoration:none;">Play the Cabinet</a>
+    </div>
+  </div>
+  <div class="show-card reveal">
+    <div class="show-number">SL Tonight Arcade</div>
+    <div class="show-name">VERBUM</div>
+    <div class="show-desc" style="margin-bottom:1rem;">The Dead Shift. Pages from the booth. Stones breed if you leave them. Rain eats the yard. We Are Where The Nightmares Go.</div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="verbum.html" class="btn primary" style="font-size:0.68rem;text-decoration:none;">Play the Cabinet</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="shows-header reveal">
+  <div class="section-label">Second Life</div>
+  <h2 class="section-title">Friends of the Show</h2>
+  <p class="section-body" style="max-width:600px;">Places worth visiting in Second Life. Click any location to teleport directly.</p>
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem 3rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;">
+
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="yff2.png" alt="Your Favorite Felines" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Second Life Location</div>
+      <div class="show-name">Your Favorite Felines</div>
+      <div class="show-desc" style="margin-bottom:1rem;">KittyCatS! breeders and home of Guillermo, Desmond and friends. SL Tonight filmed Flop Sweat here.</div>
+      <a href="http://maps.secondlife.com/secondlife/Patagonia/151/205/44" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+    </div>
+  </div>
+  <!-- ═══ WITCHES CENTER & CAFÉ — UPDATED CARD ═══ -->
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="witchescentercafe.png" alt="Witches Center and Cafe" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Second Life Location · Online Sanctuary</div>
+      <div class="show-name">Witches Center & Café</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Tucked beside an old graveyard where the veil feels thin. Run by volunteer witches. Full online sanctuary — grimoire, live sky observatory, community tools, and broomstick parking.</div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+        <a href="https://thewitchescenterandcafe.netlify.app/" class="btn" target="_blank" style="font-size:0.62rem;">🌐 Visit the Sanctuary</a>
+        <button onclick="document.getElementById('cosmic-modal').style.display='flex'" class="btn" style="font-size:0.62rem;cursor:pointer;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);">✦ Cosmic Whispers</button>
+      </div>
+    </div>
+  </div>
+  <!-- ═══ END WITCHES CENTER CARD ═══ -->
+
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="Porcelain___Poison.jpg" alt="Porcelain and Poison" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Second Life Location</div>
+      <div class="show-name">Porcelain & Poison</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Welcome in for a visit. But sip slowly… the dolls are watching.</div>
+      <a href="http://maps.secondlife.com/secondlife/Ryefield%20Village/62/53/24" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+    </div>
+  </div>
+
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="Unbound_Grounds.jpg" alt="Unbound Grounds" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Second Life Location</div>
+      <div class="show-name">Unbound Grounds</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Drive-in movies, classic arcade cabinets, a Carnival of Chaos coming soon, and a zombie apocalypse motorcycle track on the horizon. Something for everyone. Bring snacks.</div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="http://maps.secondlife.com/secondlife/Bigger%20Bang%20Park/107/216/25" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+        <button onclick="document.getElementById('unbound-modal').style.display='flex'" class="btn" style="font-size:0.62rem;cursor:pointer;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);">View Schedule</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="CrixusCarnivalMarqueeSquareGreen5.png" alt="Crixus Carnival of Carnage" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Second Life Location — Adult Only</div>
+      <div class="show-name">Crixus Carnival of Carnage</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Year-round Halloween Horror Experience. Spin the Wheel of Deaths. Twisted carnival games. Horror, SciFi and Mystery radio dramas streamed weekly.</div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="http://maps.secondlife.com/secondlife/Queue/240/192/1001" class="btn" target="_blank" style="font-size:0.62rem;">Teleport In World</a>
+        <button onclick="document.getElementById('crixus-modal').style.display='flex'" class="btn" style="font-size:0.62rem;cursor:pointer;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);">View Schedule</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="show-card reveal" style="padding:0;overflow:hidden;">
+    <img src="craft.jpeg" alt="The Craft Room" style="width:100%;display:block;height:200px;object-fit:cover;object-position:center top;">
+    <div style="padding:1.25rem;">
+      <div class="show-number">Real World — Custom Crafts</div>
+      <div class="show-name">The Craft Room</div>
+      <div class="show-desc" style="margin-bottom:1rem;">Custom Cricut, DTF, UVDTF & Sublimation for any and every occasion. Where creativity meets customization.</div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--gold-dim);margin-bottom:0.75rem;">TikTok: @TheCraftRoom00</div>
+      <a href="https://www.tiktok.com/@TheCraftRoom00" class="btn" target="_blank" style="font-size:0.62rem;">Find Us on TikTok</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- UNBOUND GROUNDS SCHEDULE MODAL -->
+<div id="unbound-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:#13100a;border:1px solid var(--gold-dim);max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto;">
+    <button onclick="document.getElementById('unbound-modal').style.display='none'" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:var(--gold-dim);font-size:1.5rem;cursor:pointer;font-family:'Special Elite',monospace;">✕</button>
+    <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.5rem;">Upcoming Features</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:0.5rem;">Unbound Grounds</div>
+    <div style="font-family:'Special Elite',monospace;font-size:0.65rem;color:var(--gold-dim);margin-bottom:2rem;">Overlook Drive-In · Features start 7:00 PM SLT · April 2025</div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Thursday · April 2 · Serial Night</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Ratched — S01 E01</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Friday · April 3 · Choice of the House</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Blade Runner (1982)</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Saturday · April 4 · Guest Request</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Evil Toons</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Monday · April 6 · Double Feature</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Rocky Horror Picture Show</div>
+      <div style="font-size:0.85rem;color:rgba(240,230,200,0.4);margin:0.25rem 0 0.5rem;">followed by</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Shock Treatment</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Thursday · April 9 · Serial Night</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Ratched — S01 E02</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Thursday · April 16 · Serial Night</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Ratched — S01 E03</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Thursday · April 23 · Serial Night</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Ratched — S01 E04</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Friday · April 24 · Choice of the House</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Dreamscape</div>
+    </div>
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Saturday · April 25 · Guest Request</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">1922</div>
+    </div>
+    <div style="margin-bottom:2rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Monday · April 27 · Double Feature</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Bill & Ted's Excellent Adventure</div>
+      <div style="font-size:0.85rem;color:rgba(240,230,200,0.4);margin:0.25rem 0 0.5rem;">followed by</div>
+      <div style="font-size:1.1rem;color:rgba(240,230,200,0.9);font-family:'Playfair Display',Georgia,serif;font-style:italic;">Bill & Ted's Bogus Journey</div>
+    </div>
+    <a href="http://maps.secondlife.com/secondlife/Bigger%20Bang%20Park/107/216/25" class="btn primary" target="_blank" style="font-size:0.68rem;display:inline-block;">Teleport to Unbound Grounds</a>
+  </div>
+</div>
+
+<!-- CRIXUS SCHEDULE MODAL -->
+<div id="crixus-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:#13100a;border:1px solid var(--gold-dim);max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto;">
+    <button onclick="document.getElementById('crixus-modal').style.display='none'" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:var(--gold-dim);font-size:1.5rem;cursor:pointer;font-family:'Special Elite',monospace;">✕</button>
+    <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.5rem;">Schedule</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:2rem;">Crixus Carnival of Carnage</div>
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Sundays</div>
+      <div style="font-size:1rem;color:rgba(240,230,200,0.8);line-height:1.8;">
+        4:00 – 6:00 PM SLT &nbsp;·&nbsp; SciFi/Horror Radio Dramas<br>
+        <span style="color:rgba(240,230,200,0.5);font-style:italic;">Library of the Mind</span><br><br>
+        8:00 PM SLT &nbsp;·&nbsp; LGBT Movie
+      </div>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Mondays</div>
+      <div style="font-size:1rem;color:rgba(240,230,200,0.8);line-height:1.8;">
+        4:00 – 6:00 PM SLT &nbsp;·&nbsp; DJ Crixus Music<br><br>
+        6:00 – 8:00 PM SLT &nbsp;·&nbsp; Horror Radio Dramas
+      </div>
+    </div>
+    <div style="margin-bottom:2rem;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.2);padding-bottom:0.5rem;margin-bottom:0.75rem;">Saturdays</div>
+      <div style="font-size:1rem;color:rgba(240,230,200,0.8);line-height:1.8;">
+        4:00 – 6:00 PM SLT &nbsp;·&nbsp; SciFi Radio Dramas<br><br>
+        8:00 PM SLT &nbsp;·&nbsp; Horror Movie Film Club
+      </div>
+    </div>
+    <a href="http://maps.secondlife.com/secondlife/Queue/240/192/1001" class="btn primary" target="_blank" style="font-size:0.68rem;display:inline-block;">Teleport to the Carnival</a>
+  </div>
+</div>
+
+<div class="shows-header reveal">
+  <div class="section-label">Now Playing</div>
+  <h2 class="section-title">Featured</h2>
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem 2rem;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-bottom:1.5rem;">
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/hgfAM218X14" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="show-number">SL Tonight</div>
+        <div class="show-name" style="font-size:1rem;">Milk Bowl Meltdown</div>
+        <div class="show-desc">New feature.</div>
+      </div>
+    </div>
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/nJyNLasG4Dk" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="show-number">SL Tonight</div>
+        <div class="show-name" style="font-size:1rem;">Doubleback From The Future</div>
+        <div class="show-desc">New feature. The past does not stay parked.</div>
+      </div>
+    </div>
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/8FTtJvsGRf0" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="show-number">New Series</div>
+        <div class="show-name" style="font-size:1rem;">Badge &amp; Scalpel</div>
+        <div class="show-desc">New series. Badge in one hand. Scalpel in the other.</div>
+      </div>
+    </div>
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/EDiEfWjkrqM" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="show-number">New Series</div>
+        <div class="show-name" style="font-size:1rem;">That Beats The Devil</div>
+        <div class="show-desc">New series. Fiddle, fork, and the usual contract work.</div>
+      </div>
+    </div>
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/LNtOZXUSzoY" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="show-number">Felix and the Dial Tones</div>
+        <div class="show-name" style="font-size:1rem;">Plastic Frequency</div>
+        <div class="show-desc">House band cut. Plastic frequency, late-night signal.</div>
+      </div>
+    </div>
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/19DOI9tTx0c" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="show-number">New Series</div>
+        <div class="show-name" style="font-size:1rem;">In Each And Every Package</div>
+        <div class="show-desc">New series. Do not shake the box.</div>
+      </div>
+    </div>
+
+    <div class="show-card reveal" style="padding:0;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:200px;">
+      <div style="padding:2rem 1.25rem;">
+        <div class="show-number" style="margin-bottom:1rem;">Full Archive</div>
+        <div class="show-name" style="font-size:1.1rem;margin-bottom:0.75rem;">Every Episode</div>
+        <div class="show-desc" style="margin-bottom:1.5rem;">All SL Tonight episodes in one place.</div>
+        <a href="https://www.youtube.com/playlist?list=PL59Cc_WJ6_tLc0wxtEUfFUFoV9uoCo7XW" class="btn" target="_blank" style="font-size:0.65rem;">Watch the Playlist</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-sym">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- FROM THE ARCHIVE — FUNNY PAPERS SECTION -->
+
+<!-- Newspaper section masthead -->
+<div style="background:var(--dark-mid);border-top:3px double rgba(201,168,76,0.35);border-bottom:3px double rgba(201,168,76,0.35);padding:1.5rem 2rem;text-align:center;margin-top:2rem;">
+  <div style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.6em;color:rgba(201,168,76,0.35);text-transform:uppercase;margin-bottom:0.4rem;">SL Tonight Presents</div>
+  <div style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--gold);letter-spacing:0.04em;line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,0.5);">The Funny Papers</div>
+  <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-top:0.5rem;">Public Domain · One Strip Per Day · Est. 1904</div>
+</div>
+
+<!-- TWO DAILY STRIPS SIDE BY SIDE -->
+<div style="max-width:1100px;margin:0 auto;padding:3rem 2rem 0;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="archive-grid">
+
+  <!-- RAREBIT FIEND -->
+  <div class="reveal">
+    <div style="margin-bottom:1rem;">
+      <div class="section-label">Winsor McCay · c.1904–1913</div>
+      <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2;margin-bottom:0.25rem;">Dream of the Rarebit Fiend</h3>
+      <p style="font-style:italic;font-size:0.85rem;color:rgba(240,230,200,0.3);">Public Domain · 63-strip rotation</p>
+    </div>
+    <div style="border:1px solid rgba(201,168,76,0.15);overflow:hidden;background:var(--dark-warm);">
+      <img id="rarebit-img" src="" alt="Dream of the Rarebit Fiend" style="width:100%;display:block;filter:sepia(0.15);">
+    </div>
+    <div style="font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:0.82rem;color:rgba(240,230,200,0.22);margin-top:0.5rem;" id="rarebit-caption"></div>
+    <div style="margin-top:0.75rem;">
+      <a href="rarbitfiend.html" style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;border:1px solid rgba(201,168,76,0.2);padding:0.4rem 1rem;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)';this.style.color='var(--gold-dim)'">View Full Archive Page →</a>
+    </div>
+  </div>
+
+  <!-- OUR BOARDING HOUSE -->
+  <div class="reveal">
+    <div style="margin-bottom:1rem;">
+      <div class="section-label">Gene Ahern · NEA Service · 1927</div>
+      <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2;margin-bottom:0.25rem;">Our Boarding House</h3>
+      <p style="font-style:italic;font-size:0.85rem;color:rgba(240,230,200,0.3);">Public Domain · 100-panel rotation</p>
+    </div>
+    <div style="border:1px solid rgba(201,168,76,0.15);overflow:hidden;background:var(--dark-warm);">
+      <img id="obh-img" src="" alt="Our Boarding House by Gene Ahern" style="width:100%;display:block;filter:sepia(0.12) contrast(1.04);">
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;">
+      <div style="font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:0.82rem;color:rgba(240,230,200,0.22);" id="obh-caption"></div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,168,76,0.3);white-space:nowrap;" id="obh-nav"></div>
+    </div>
+    <div style="margin-top:0.75rem;">
+      <a href="ourboardinghouse.html" style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;border:1px solid rgba(201,168,76,0.2);padding:0.4rem 1rem;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)';this.style.color='var(--gold-dim)'">View Full Archive Page →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- COLUMN RULE between strips and Boob -->
+<div style="max-width:1100px;margin:3rem auto 0;padding:0 2rem;">
+  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="text-align:center;margin-top:-0.6rem;"><span style="background:var(--dark);padding:0 0.75rem;font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.4em;color:rgba(201,168,76,0.3);text-transform:uppercase;">✦</span></div>
+</div>
+
+<!-- BOOB McNUTT — centered, visitor-controlled -->
+<div style="max-width:780px;margin:2.5rem auto 0;padding:0 2rem;" class="reveal">
+
+  <!-- Strip header -->
+  <div style="text-align:center;margin-bottom:1.25rem;">
+    <div class="section-label">Rube Goldberg · King Features Syndicate · 1918–1934</div>
+    <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;color:var(--gold);line-height:1.1;margin-bottom:0.3rem;">Boob McNutt</h3>
+    <p style="font-style:italic;font-size:0.88rem;color:rgba(240,230,200,0.35);">Public Domain · Browse the full archive</p>
+  </div>
+
+  <!-- Comic panel frame -->
+  <div style="border:3px solid #2a1f0a;box-shadow:4px 4px 0 rgba(0,0,0,0.5),0 0 0 1px rgba(201,168,76,0.2);background:#e8dfc0;padding:5px;margin-bottom:0.75rem;">
+    <img id="boob-img" src="" alt="Boob McNutt by Rube Goldberg" style="width:100%;display:block;filter:sepia(0.1) contrast(1.04);">
+  </div>
+
+  <!-- Caption -->
+  <div style="text-align:center;font-family:'Crimson Text',Georgia,serif;font-style:italic;font-size:0.85rem;color:rgba(240,230,200,0.25);margin-bottom:1rem;" id="boob-caption"></div>
+
+  <!-- Prev / Next controls -->
+  <div style="display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
+    <button onclick="boobNav(-1)" style="font-family:'Special Elite',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.65rem 1.5rem;border:1px solid rgba(201,168,76,0.35);color:var(--gold);background:transparent;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.background='transparent'">← Prev</button>
+    <div style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,168,76,0.35);" id="boob-counter"></div>
+    <button onclick="boobNav(1)" style="font-family:'Special Elite',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.65rem 1.5rem;border:1px solid rgba(201,168,76,0.35);color:var(--gold);background:transparent;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.background='transparent'">Next →</button>
+  </div>
+
+  <!-- Info / archive link -->
+  <div style="background:var(--dark-warm);border:1px solid rgba(201,168,76,0.1);padding:1.25rem 1.5rem;text-align:center;">
+    <p style="font-size:0.92rem;line-height:1.75;color:rgba(240,230,200,0.5);margin-bottom:0.75rem;">Rube Goldberg's long-running Sunday strip about a lovable, magnificently incompetent everyman. The same Rube Goldberg whose name became a dictionary entry for over-engineered absurdity. This is where that started. Running 1918–1934, King Features Syndicate.</p>
+    <a href="https://en.wikipedia.org/wiki/Boob_McNutt" target="_blank" style="font-family:'Special Elite',monospace;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;border:1px solid rgba(201,168,76,0.18);padding:0.4rem 1rem;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.18)';this.style.color='var(--gold-dim)'">Boob McNutt — Wikipedia Archive Info →</a>
+  </div>
+
+</div>
+
+<!-- bottom margin -->
+<div style="height:4rem;"></div>
+
+<script>
+  // ── RAREBIT FIEND ──────────────────────────────────────────────────
+  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  const rarebitTotal = 63;
+  const stripNum = dayOfYear % rarebitTotal;
+  document.getElementById('rarebit-img').src = 'rarbit' + stripNum + '.jpg';
+  document.getElementById('rarebit-caption').textContent = 'Strip ' + stripNum + ' of ' + (rarebitTotal - 1) + ' · Dream of the Rarebit Fiend · Winsor McCay';
+
+  // ── OUR BOARDING HOUSE ─────────────────────────────────────────────
+  const obhFiles = [
+    'obh270101.png','obh270103.png','obh270104.png','obh270105.png','obh270106.png',
+    'obh270107.png','obh270108.png','obh270110.png','obh270111.png','obh270112.png',
+    'obh270113.png','obh270114.png','obh270115.png','obh270117.png','obh270118.png',
+    'obh270119.png','obh270120.png','obh270121.png','obh270122.png','obh270124.png',
+    'obh270125.png','obh270126.png','obh270127.png','obh270128.png','obh270129.png',
+    'obh270131.png','obh270201.png','obh270202.png','obh270203.png','obh270204.png',
+    'obh270205.png','obh270207.png','obh270208.png','obh270209.png','obh270210.png',
+    'obh270211.png','obh270212.png','obh270214.png','obh270215.png','obh270216.png',
+    'obh270217.png','obh270218.png','obh270219.png','obh270221.png','obh270222.png',
+    'obh270223.png','obh270224.png','obh270225.png','obh270226.png','obh270228.png',
+    'obh270301.png','obh270302.png','obh270303.png','obh270304.png','obh270305.png',
+    'obh270307.png','obh270308.png','obh270309.png','obh270310.png','obh270311.png',
+    'obh270312.png','obh270314.png','obh270315.png','obh270316.png','obh270317.png',
+    'obh270318.png','obh270319.png','obh270321.png','obh270322.png','obh270323.png',
+    'obh270324.png','obh270325.png','obh270326.png','obh270328.png','obh270329.png',
+    'obh270330.png','obh270331.png','obh270401.png','obh270402.png','obh270404.png',
+    'obh270405.png','obh270406.png','obh270407.png','obh270408.png','obh270409.png',
+    'obh270411.png','obh270412.png','obh270413.png','obh270414.png','obh270415.png',
+    'obh270416.png','obh270418.png','obh270419.png','obh270420.png','obh270421.png',
+    'obh270422.png','obh270423.png','obh270425.png','obh270426.png'
+  ];
+  const panelNum = dayOfYear % obhFiles.length;
+  const obhImg = document.getElementById('obh-img');
+  obhImg.src = 'our boarding house 1927 1/' + obhFiles[panelNum];
+  const fname = obhFiles[panelNum].replace('obh','').replace('.png','');
+  const yr = 1900 + parseInt(fname.substring(0,2));
+  const mo = parseInt(fname.substring(2,4)) - 1;
+  const dy = parseInt(fname.substring(4,6));
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('obh-caption').textContent = 'Our Boarding House · Gene Ahern · ' + months[mo] + ' ' + dy + ', ' + yr;
+  document.getElementById('obh-nav').textContent = 'Panel ' + (panelNum + 1) + ' of ' + obhFiles.length;
+
+  // ── BOOB McNUTT ────────────────────────────────────────────────────
+  const boobFiles = [
+    'BoobMcnutt-26Aug08.jpg','BoobMcnutt-31Feb15.jpg','BoobMcnutt-34Jul15.jpg',
+    'BoobMcNutt-201219-F.jpg','BoobMcNutt-220820-F.jpg','BoobMcNutt-230527-F.jpg',
+    'BoobMcNutt-230729-F.jpg','BoobMcNutt-230909-F.jpg','BoobMcNutt-230923-F.jpg',
+    'BoobMcNutt-231028-F.jpg','BoobMcNutt-231111-F.jpg','BoobMcNutt-231230-F.jpg',
+    'BoobMcNutt-251115-F.jpg','BoobMcNutt-260103-F.jpg','BoobMcNutt-260110-F.jpg',
+    'BoobMcNutt-260117-F.jpg','BoobMcNutt-260207-F.jpg','BoobMcNutt-260221-F.jpg',
+    'BoobMcNutt-260314-F.jpg','BoobMcNutt-260321-F.jpg','BoobMcNutt-260516-F.jpg',
+    'BoobMcNutt-260523-F.jpg','BoobMcNutt-260606-F.jpg','BoobMcNutt-260613-F.jpg',
+    'BoobMcNutt-260725-F.jpg','BoobMcNutt-260801-F.jpg','BoobMcNutt-260808-F.jpg',
+    'BoobMcNutt-261003-F.jpg','BoobMcNutt-261010-F.jpg','BoobMcNutt-261121-F.jpg',
+    'BoobMcNutt-261128-F.jpg','BoobMcNutt-261219-F.jpg','BoobMcNutt-280401-F.jpg',
+    'BoobMcNutt-280826-F.jpg','BoobMcNutt-290804-F.jpg','BoobMcNutt-291208-F.jpg',
+    'BoobMcNutt-300914-F.jpg','BoobMcNutt-301019-F.jpg','BoobMcNutt-301026-F.jpg',
+    'BoobMcNutt-301123-F.jpg','BoobMcNutt-301214-F.jpg','BoobMcNutt-310215-F.jpg',
+    'BoobMcNutt-310614-F.jpg','BoobMcNutt-311025-F.jpg','BoobMcNutt-311108-F.jpg',
+    'BoobMcNutt-311129-F.jpg','BoobMcNutt-311215-F.jpg','BoobMcNutt-311220-F.jpg',
+    'BoobMcNutt-311227-F.jpg','BoobMcNutt-320103-F.jpg','BoobMcNutt-320117-F.jpg',
+    'BoobMcNutt-320124-F.jpg','BoobMcNutt-320207-F.jpg','BoobMcNutt-320306-F.jpg',
+    'BoobMcNutt-320424-F.jpg','BoobMcNutt-320508-F.jpg','BoobMcNutt-320529-F.jpg',
+    'BoobMcNutt-320703-F.jpg','BoobMcNutt-320814-F.jpg','BoobMcNutt-320828-F.jpg',
+    'BoobMcNutt-320904-F.jpg','BoobMcNutt-320911-F.jpg','BoobMcNutt-321002-F.jpg',
+    'BoobMcNutt-321009-F.jpg','BoobMcNutt-321106-F.jpg','BoobMcNutt-321225-F.jpg',
+    'BoobMcnutt-340715-F.jpg'
+  ];
+
+  let boobIndex = dayOfYear % boobFiles.length;
+
+  function boobShow() {
+    const f = boobFiles[boobIndex];
+    document.getElementById('boob-img').src = 'boob/' + f;
+    const base = f.replace('BoobMcnutt-','').replace('BoobMcNutt-','').replace('-F.jpg','').replace('.jpg','');
+    document.getElementById('boob-caption').textContent = 'Boob McNutt · Rube Goldberg · ' + base;
+    document.getElementById('boob-counter').textContent = (boobIndex + 1) + ' of ' + boobFiles.length;
+  }
+
+  function boobNav(dir) {
+    boobIndex = (boobIndex + dir + boobFiles.length) % boobFiles.length;
+    boobShow();
+    document.getElementById('boob-img').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  boobShow();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COSMIC WHISPERS MODAL — updated to cosmicwisperslight.netlify.app
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="cosmic-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:#0d0a14;border:1px solid #6b3fa0;max-width:560px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 0 40px rgba(107,63,160,0.3);">
+    <button onclick="document.getElementById('cosmic-modal').style.display='none'" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:#9b6dd4;font-size:1.5rem;cursor:pointer;font-family:'Special Elite',monospace;">✕</button>
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div style="font-size:1.8rem;margin-bottom:0.5rem;">✦ ☽ ✦</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;font-weight:700;color:#c8a0e8;font-style:italic;text-shadow:0 0 20px rgba(200,160,232,0.4);">Cosmic Whispers</div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.62rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-top:0.4rem;">Witches Center & Café · Live Sky HUD</div>
+    </div>
+    <div style="border:1px solid rgba(107,63,160,0.4);overflow:hidden;margin-bottom:1.5rem;background:#0a0812;">
+      <!-- UPDATED: cosmicwisperslight.netlify.app -->
+      <iframe src="https://cosmicwisperslight.netlify.app/" style="width:100%;height:380px;border:none;display:block;" title="Cosmic Whispers Live Sky HUD" loading="lazy"></iframe>
+    </div>
+    <div style="font-family:'Crimson Text',Georgia,serif;font-size:1rem;line-height:1.8;color:rgba(200,160,232,0.7);text-align:center;margin-bottom:1.5rem;font-style:italic;">
+      Real-time planetary positions · Moon phases · Retrograde tracker<br>
+      Transit forecast · Spell windows · Daily cosmic forecast
+    </div>
+    <div style="border-top:1px solid rgba(107,63,160,0.3);padding-top:1.25rem;text-align:center;">
+      <div style="font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.3em;color:#6b3fa0;text-transform:uppercase;margin-bottom:0.75rem;">Celestial Reference · 13-Sign Research</div>
+      <!-- UPDATED: celestiacoreupdate.netlify.app -->
+      <a href="https://celestiacoreupdate.netlify.app/" target="_blank" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;color:#c8a0e8;text-decoration:none;border:1px solid rgba(107,63,160,0.4);padding:0.5rem 1.5rem;display:inline-block;transition:all 0.2s;margin-bottom:0.75rem;">✦ Open CelestiaCore ✦</a>
+      <br>
+      <!-- UPDATED: full WCC site link -->
+      <a href="https://thewitchescenterandcafe.netlify.app/" target="_blank" style="font-family:'Playfair Display',Georgia,serif;font-size:0.9rem;color:#9b6dd4;text-decoration:none;border:1px solid rgba(107,63,160,0.3);padding:0.4rem 1.2rem;display:inline-block;transition:all 0.2s;">🌐 Enter the Full Sanctuary</a>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem;">
+      <a href="http://maps.secondlife.com/secondlife/Bam/94/172/3002" target="_blank" style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b3fa0;text-decoration:none;">Teleport to Witches Center & Café in Second Life ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="find-us">
+  <div class="section-label" style="text-align:center;">Find Us</div>
+  <h2 class="section-title" style="text-align:center;">Tune In</h2>
+  <p class="section-body" style="text-align:center;margin:0 auto;">No serial number required. Do not mail anything to Philadelphia.</p>
+</div>
+
+<div class="links-row">
+  <a href="https://youtube.com/@jamesriley007" class="link-block reveal" target="_blank">
+    <span class="link-icon">▶</span>
+    <span class="link-label">Primary</span>
+    <span class="link-name">YouTube</span>
+  </a>
+  <a href="https://marketplace.secondlife.com/stores/255106" class="link-block reveal" target="_blank">
+    <span class="link-icon">🛒</span>
+    <span class="link-label">Shop</span>
+    <span class="link-name">SL Marketplace</span>
+  </a>
+  <a href="https://discord.gg/DSBcwS7zXE" class="link-block reveal" target="_blank">
+    <span class="link-icon">💬</span>
+    <span class="link-label">Community</span>
+    <span class="link-name">Discord</span>
+  </a>
+</div>
+
+<footer>
+  <img src="SL_Tonight_We_Are_Where_The_Nightmares_Go_alt.jpeg" alt="SL Tonight" class="footer-logo-img">
+  <div class="footer-tag">We are where the nightmares go</div>
+  <div class="footer-fine">
+    SL Tonight is not affiliated with Atari, Nintendo, or anyone else.<br>
+    All fan works presented with full credit to original creators.<br>
+    Public domain content historically preserved and presented with respect.<br>
+    © 2024 SL Tonight / Felix Lubezki
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 50);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
